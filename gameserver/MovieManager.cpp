@@ -87,7 +87,7 @@ void MovieManager::Load(DBQuery* p)
 
 		query.reset();
 		sResult.clear();
-		query << "select * from `movies_collection`";
+		query << "select * from `themes_collection`";
 		sResult = query.store();
 		rows_length = sResult.num_rows();
 		for (int i = 0; i < rows_length; i++)
