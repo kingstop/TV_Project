@@ -285,7 +285,10 @@ bool GameServer::initDataFromCharacterDB(DBQuery* p, const void* data)
 	if (sResult.num_rows() > 0)
 	{
 		DBRow& row = sResult[0];
-		character_id = row["character_id"];
+		if (row["MAX(`character_id`)"].is_null() == false)
+		{
+			character_id = row["MAX(`character_id`)"];
+		}
 	}
 	character_id += 10;
 	gCharacterManager.SetMaxCharacterID(character_id);
