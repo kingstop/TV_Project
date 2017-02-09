@@ -8,7 +8,7 @@ Character::Character()
 	entry_theme_external.set_id(0);
 	entry_theme_external.set_describe("");
 	entry_theme_external.set_name("");
-	entry_theme_external.set_type(message::MovieType_Collection);
+	entry_theme_external.set_type(message::MovieType_MyFavourite);
 	_collection_theme.mutable_theme_external()->CopyFrom(entry_theme_external);	
 }
 
