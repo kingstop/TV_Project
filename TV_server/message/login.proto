@@ -1,0 +1,96 @@
+package message;
+import "common.proto";
+
+message VersionTg
+{
+	required int32 number_1 = 1;
+	required int32 number_2 = 2;
+	required int32 number_3 = 3;
+}
+
+
+message LoginRequest
+{
+	optional string name = 1;
+	optional string pwd = 2;
+	optional VersionTg version = 3;
+	optional int32 channel = 4;
+}
+
+
+message RegisterAccountRequest
+{
+	required string name = 1;
+	required string pwd = 2;
+}
+
+message RegisterAccountFaildACK
+{
+}
+
+//登录结果枚举
+enum enumLoginResult
+{
+	enumLoginResult_Success = 0;
+	enumLoginResult_Fail = 1;
+	enumLoginResult_NameFail = 2;
+	enumLoginResult_PwdFail = 3;
+	enumLoginResult_HaveLogin = 4;	//已经登录
+	enumLoginResult_ErrorVersion = 5;	//已经登录
+	enumLoginResult_ErrorChannel = 6;	//已经登录
+	enumLoginResult_ErrorNeedThirdVerify = 7;
+};
+
+
+message LoginResponse
+{
+	optional string gate_ip = 1;
+	optional uint32 gate_port = 2;
+	optional uint32 user_account = 3;		//账号ID
+	optional enumLoginResult result = 4;	//登录结果
+	optional VersionTg version = 5;	
+};
+
+//登录Gate
+message LoginGame
+{
+	required uint32 user_account = 1;		//账号ID
+};
+
+//离开服务器
+message ClientExit
+{
+	optional uint32 charid = 1;
+	optional uint64 user_account = 2;
+};
+
+
+
+message C2SPlatformVerifyReq
+{
+	required string user_id = 1;
+	required string app_id = 2;
+	required string app_key = 3;
+	required string token_id = 4;
+	required int32 channel_id = 5;
+	required string extra_data = 6;
+}
+
+message S2CPlatformVerifyACK
+{
+	required string user_id = 1;
+	required string nick_name = 2;
+	required string token = 3;
+	required bool success = 4;
+}
+
+message MsgS2CPingNotify
+{
+	required int32 time = 1;
+	required int32 ping_count = 2;
+}
+
+message MsgC2SPingNotify
+{
+	
+}

@@ -1,0 +1,50 @@
+package message;
+import "common.proto";
+message MsgReqHeroDataGS2DB
+{
+	required uint64 account = 1;
+}
+
+
+message MsgSaveDataGS2DB
+{
+	required bytes sql = 1;
+}
+
+message MsgRecordSqlGS2DB
+{
+	required bytes sql = 1;
+}
+
+message MsgReqCharacterDataGS2DB
+{
+	required uint64 character_id = 1;
+}
+
+message MsgCharacterDataDB2GSACK
+{
+	repeated MsgWatchRecordInfo records = 1;
+	required int32 vip = 2;
+	repeated int32 collection_movies_ids = 3;
+	required uint64 character_id = 4;
+	
+}
+
+message MsgReqCharacterIDGS2DB
+{
+	required uint64 account = 1;	
+}
+
+message MsgCharacterIDDB2GSACK
+{
+	required uint64 default_charatcer_id = 1;
+	required int32 channel = 2;
+	required string key_word = 3;
+	required uint64 channel_character_id = 4;	
+}
+
+message MsgNeedCreateCharacterDB2GS
+{
+
+}
+

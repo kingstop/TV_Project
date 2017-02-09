@@ -1,0 +1,46 @@
+package message;
+import "common.proto";
+
+
+message MsgC2SReqMovieThemes
+{
+	
+}
+
+
+message MsgS2CMovieThemesACK
+{
+	repeated MsgMovieThemeExternal infos = 1;
+}
+
+
+
+message MsgS2CClientInit
+{
+	repeated MsgWatchRecordInfo watch_record = 1;
+	required int32 vip = 2;
+	required string resource_path = 3;
+	required string config_pic_path = 4;
+	required string config_video_path = 5;
+}
+
+message MsgC2SReqThemeInfo
+{
+	required int32 Theme_id = 1;
+}
+
+message MsgS2CMovieThemeInfoACK
+{
+	required MsgMovieTheme info = 1;
+}
+
+message MsgC2SReqMovieInfo
+{
+	required int32 movie_id = 1;
+}
+
+message MsgS2CMovieInfoACK
+{
+	required MsgMovie info = 1;
+}
+

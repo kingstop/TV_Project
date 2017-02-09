@@ -1,0 +1,78 @@
+package message;
+
+message MsgIntPair
+{
+	required int32 number_1 = 1;
+	required int32 number_2 = 2;
+}
+
+message MsgIntBoolPair
+{
+	required int32 number = 1;
+	required bool valid = 2;
+}
+
+message MsgWatchRecordInfo
+{
+	required int32 movie_id = 1;
+	required int32 video_id = 2;
+	required int32 Progress = 3;
+	required uint32 time = 4;
+}
+
+message MsgVideo
+{
+	required string path = 1;
+	required string describe = 2;
+	required int32 rank = 3;
+	required int32 video_id = 4;
+	required string name = 5;
+}
+
+enum VideoType
+{
+	VideoType_Video = 0;
+	VideoType_Movie = 1;
+}
+
+
+
+message MsgMovieExternal
+{
+	required int32 movie_id = 1;
+	required string describe = 2;
+	required VideoType type = 3[default = VideoType_Video];
+	required string name = 4;	
+}
+
+message MsgMovie
+{
+	required MsgMovieExternal external = 1;
+	repeated MsgVideo videos = 2;
+}
+
+enum MovieType
+{
+	MovieType_Collection = 0;
+	MovieType_New = 1;
+	MovieType_CartoonRecommendation = 2;
+	MovieType_EarlyEducationRecommendation = 3;
+	MovieType_MostPopular = 4;
+	MovieType_Special = 5;
+	
+}
+
+message MsgMovieThemeExternal
+{
+	required string name = 1;
+	required string describe = 2;	
+	required MovieType type = 3 [default = MovieType_Collection];
+	required int32 id = 4;
+}
+
+
+message MsgMovieTheme
+{
+	required MsgMovieThemeExternal theme_external = 1;	
+	repeated MsgMovieExternal movies_externals = 2;		
+}
