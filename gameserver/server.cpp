@@ -276,6 +276,20 @@ bool GameServer::initDataFromCharacterDB(DBQuery* p, const void* data)
 	{
 		return false;
 	}
+
+	DBQuery& query = *p;
+	query.reset();
+	query << "select MAX(`character_id`) from `character`;";
+	SDBResult sResult = query.store();
+	u64 character_id = 0;
+	if (sResult.num_rows() > 0)
+	{
+		DBRow& row = sResult[0];
+		character_id = row["character_id"];
+	}
+	character_id += 10;
+	gCharacterManager.SetMaxCharacterID(character_id);
+	
 	//gDreamHeroManager.Load(p);
 	//gRankManager.Load(p);
 
@@ -290,6 +304,7 @@ bool GameServer::initDataFromWorldDB(DBQuery* p, const void* data)
 	{ 
 		return false;
 	}
+	gMovieManager.Load(p);
 	//gGameConfig.Load(p);
 	return true;
 }
