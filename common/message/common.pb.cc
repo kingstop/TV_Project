@@ -265,20 +265,22 @@ void protobuf_AddDesc_common_2eproto() {
     "\n\004type\030\003 \002(\0162\022.message.VideoType:\017VideoT"
     "ype_Video\022\014\n\004name\030\004 \002(\t\"Z\n\010MsgMovie\022+\n\010e"
     "xternal\030\001 \002(\0132\031.message.MsgMovieExternal"
-    "\022!\n\006videos\030\002 \003(\0132\021.message.MsgVideo\"{\n\025M"
+    "\022!\n\006videos\030\002 \003(\0132\021.message.MsgVideo\"|\n\025M"
     "sgMovieThemeExternal\022\014\n\004name\030\001 \002(\t\022\020\n\010de"
-    "scribe\030\002 \002(\t\0226\n\004type\030\003 \002(\0162\022.message.Mov"
-    "ieType:\024MovieType_Collection\022\n\n\002id\030\004 \002(\005"
-    "\"|\n\rMsgMovieTheme\0226\n\016theme_external\030\001 \002("
-    "\0132\036.message.MsgMovieThemeExternal\0223\n\020mov"
-    "ies_externals\030\002 \003(\0132\031.message.MsgMovieEx"
-    "ternal*5\n\tVideoType\022\023\n\017VideoType_Video\020\000"
-    "\022\023\n\017VideoType_Movie\020\001*\273\001\n\tMovieType\022\030\n\024M"
-    "ovieType_Collection\020\000\022\021\n\rMovieType_New\020\001"
-    "\022#\n\037MovieType_CartoonRecommendation\020\002\022*\n"
-    "&MovieType_EarlyEducationRecommendation\020"
-    "\003\022\031\n\025MovieType_MostPopular\020\004\022\025\n\021MovieTyp"
-    "e_Special\020\005", 1011);
+    "scribe\030\002 \002(\t\0227\n\004type\030\003 \002(\0162\022.message.Mov"
+    "ieType:\025MovieType_MyFavourite\022\n\n\002id\030\004 \002("
+    "\005\"|\n\rMsgMovieTheme\0226\n\016theme_external\030\001 \002"
+    "(\0132\036.message.MsgMovieThemeExternal\0223\n\020mo"
+    "vies_externals\030\002 \003(\0132\031.message.MsgMovieE"
+    "xternal*5\n\tVideoType\022\023\n\017VideoType_Video\020"
+    "\000\022\023\n\017VideoType_Movie\020\001*\207\002\n\tMovieType\022\032\n\026"
+    "MovieType_RecentlyPlay\020\000\022\031\n\025MovieType_My"
+    "Favourite\020\001\022\034\n\030MovieType_DerivativeShop\020"
+    "\002\022\026\n\022MovieType_Festival\020\003\022\022\n\016MovieType_R"
+    "ank\020\004\022\025\n\021MovieType_Feature\020\005\022#\n\037MovieTyp"
+    "e_CartoonRecommendation\020\006\022*\n&MovieType_E"
+    "arlyEducationRecommendation\020\007\022\021\n\rMovieTy"
+    "pe_New\020\010", 1088);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "common.proto", &protobuf_RegisterTypes);
   MsgIntPair::default_instance_ = new MsgIntPair();
@@ -332,6 +334,9 @@ bool MovieType_IsValid(int value) {
     case 3:
     case 4:
     case 5:
+    case 6:
+    case 7:
+    case 8:
       return true;
     default:
       return false;
@@ -3213,7 +3218,7 @@ void MsgMovieThemeExternal::SharedCtor() {
   _cached_size_ = 0;
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   describe_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  type_ = 0;
+  type_ = 1;
   id_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -3256,27 +3261,16 @@ MsgMovieThemeExternal* MsgMovieThemeExternal::New(::google::protobuf::Arena* are
 }
 
 void MsgMovieThemeExternal::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<MsgMovieThemeExternal*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
   if (_has_bits_[0 / 32] & 15) {
-    ZR_(type_, id_);
     if (has_name()) {
       name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
     if (has_describe()) {
       describe_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
+    type_ = 1;
+    id_ = 0;
   }
-
-#undef ZR_HELPER_
-#undef ZR_
-
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -3326,7 +3320,7 @@ bool MsgMovieThemeExternal::MergePartialFromCodedStream(
         break;
       }
 
-      // required .message.MovieType type = 3 [default = MovieType_Collection];
+      // required .message.MovieType type = 3 [default = MovieType_MyFavourite];
       case 3: {
         if (tag == 24) {
          parse_type:
@@ -3406,7 +3400,7 @@ void MsgMovieThemeExternal::SerializeWithCachedSizes(
       2, this->describe(), output);
   }
 
-  // required .message.MovieType type = 3 [default = MovieType_Collection];
+  // required .message.MovieType type = 3 [default = MovieType_MyFavourite];
   if (has_type()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->type(), output);
@@ -3449,7 +3443,7 @@ void MsgMovieThemeExternal::SerializeWithCachedSizes(
         2, this->describe(), target);
   }
 
-  // required .message.MovieType type = 3 [default = MovieType_Collection];
+  // required .message.MovieType type = 3 [default = MovieType_MyFavourite];
   if (has_type()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       3, this->type(), target);
@@ -3486,7 +3480,7 @@ int MsgMovieThemeExternal::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_type()) {
-    // required .message.MovieType type = 3 [default = MovieType_Collection];
+    // required .message.MovieType type = 3 [default = MovieType_MyFavourite];
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
   }
@@ -3514,7 +3508,7 @@ int MsgMovieThemeExternal::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->describe());
 
-    // required .message.MovieType type = 3 [default = MovieType_Collection];
+    // required .message.MovieType type = 3 [default = MovieType_MyFavourite];
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
 
@@ -3721,7 +3715,7 @@ void MsgMovieThemeExternal::InternalSwap(MsgMovieThemeExternal* other) {
   // @@protoc_insertion_point(field_set_allocated:message.MsgMovieThemeExternal.describe)
 }
 
-// required .message.MovieType type = 3 [default = MovieType_Collection];
+// required .message.MovieType type = 3 [default = MovieType_MyFavourite];
  bool MsgMovieThemeExternal::has_type() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -3732,7 +3726,7 @@ void MsgMovieThemeExternal::InternalSwap(MsgMovieThemeExternal* other) {
   _has_bits_[0] &= ~0x00000004u;
 }
  void MsgMovieThemeExternal::clear_type() {
-  type_ = 0;
+  type_ = 1;
   clear_has_type();
 }
  ::message::MovieType MsgMovieThemeExternal::type() const {

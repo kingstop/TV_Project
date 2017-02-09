@@ -66,16 +66,19 @@ inline bool VideoType_Parse(
     VideoType_descriptor(), name, value);
 }
 enum MovieType {
-  MovieType_Collection = 0,
-  MovieType_New = 1,
-  MovieType_CartoonRecommendation = 2,
-  MovieType_EarlyEducationRecommendation = 3,
-  MovieType_MostPopular = 4,
-  MovieType_Special = 5
+  MovieType_RecentlyPlay = 0,
+  MovieType_MyFavourite = 1,
+  MovieType_DerivativeShop = 2,
+  MovieType_Festival = 3,
+  MovieType_Rank = 4,
+  MovieType_Feature = 5,
+  MovieType_CartoonRecommendation = 6,
+  MovieType_EarlyEducationRecommendation = 7,
+  MovieType_New = 8
 };
 bool MovieType_IsValid(int value);
-const MovieType MovieType_MIN = MovieType_Collection;
-const MovieType MovieType_MAX = MovieType_Special;
+const MovieType MovieType_MIN = MovieType_RecentlyPlay;
+const MovieType MovieType_MAX = MovieType_New;
 const int MovieType_ARRAYSIZE = MovieType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* MovieType_descriptor();
@@ -887,7 +890,7 @@ class MsgMovieThemeExternal : public ::google::protobuf::Message {
   ::std::string* release_describe();
   void set_allocated_describe(::std::string* describe);
 
-  // required .message.MovieType type = 3 [default = MovieType_Collection];
+  // required .message.MovieType type = 3 [default = MovieType_MyFavourite];
   bool has_type() const;
   void clear_type();
   static const int kTypeFieldNumber = 3;
@@ -1798,7 +1801,7 @@ inline void MsgMovieThemeExternal::set_allocated_describe(::std::string* describ
   // @@protoc_insertion_point(field_set_allocated:message.MsgMovieThemeExternal.describe)
 }
 
-// required .message.MovieType type = 3 [default = MovieType_Collection];
+// required .message.MovieType type = 3 [default = MovieType_MyFavourite];
 inline bool MsgMovieThemeExternal::has_type() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -1809,7 +1812,7 @@ inline void MsgMovieThemeExternal::clear_has_type() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void MsgMovieThemeExternal::clear_type() {
-  type_ = 0;
+  type_ = 1;
   clear_has_type();
 }
 inline ::message::MovieType MsgMovieThemeExternal::type() const {
