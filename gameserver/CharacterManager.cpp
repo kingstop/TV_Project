@@ -63,6 +63,16 @@ void CharacterManager::SetMaxCharacterID(int id)
 	_max_character_id = id;
 }
 
+void CharacterManager::Destroy(Character* p)
+{
+	std::map<u64, Character*>::iterator it = _characters.find(p->GetID());
+	if (it != _characters.end())
+	{
+		_characters.erase(it);
+	}
+	delete p;
+}
+
 void CharacterManager::LoadCharacter(u64 id, Session* s)
 {
 	std::map<u64, std::list<Session*>>::iterator it = _wait_load_sessions.find(id);

@@ -337,6 +337,18 @@ class MsgS2CClientInit : public ::google::protobuf::Message {
   ::std::string* release_config_video_path();
   void set_allocated_config_video_path(::std::string* config_video_path);
 
+  // repeated .message.MsgIntPair gird_theme = 6;
+  int gird_theme_size() const;
+  void clear_gird_theme();
+  static const int kGirdThemeFieldNumber = 6;
+  const ::message::MsgIntPair& gird_theme(int index) const;
+  ::message::MsgIntPair* mutable_gird_theme(int index);
+  ::message::MsgIntPair* add_gird_theme();
+  const ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >&
+      gird_theme() const;
+  ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >*
+      mutable_gird_theme();
+
   // @@protoc_insertion_point(class_scope:message.MsgS2CClientInit)
  private:
   inline void set_has_vip();
@@ -358,6 +370,7 @@ class MsgS2CClientInit : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr resource_path_;
   ::google::protobuf::internal::ArenaStringPtr config_pic_path_;
   ::google::protobuf::internal::ArenaStringPtr config_video_path_;
+  ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair > gird_theme_;
   ::google::protobuf::int32 vip_;
   friend void  protobuf_AddDesc_BodhiTV_2eproto();
   friend void protobuf_AssignDesc_BodhiTV_2eproto();
@@ -983,6 +996,36 @@ inline void MsgS2CClientInit::set_allocated_config_video_path(::std::string* con
   }
   config_video_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), config_video_path);
   // @@protoc_insertion_point(field_set_allocated:message.MsgS2CClientInit.config_video_path)
+}
+
+// repeated .message.MsgIntPair gird_theme = 6;
+inline int MsgS2CClientInit::gird_theme_size() const {
+  return gird_theme_.size();
+}
+inline void MsgS2CClientInit::clear_gird_theme() {
+  gird_theme_.Clear();
+}
+inline const ::message::MsgIntPair& MsgS2CClientInit::gird_theme(int index) const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_.Get(index);
+}
+inline ::message::MsgIntPair* MsgS2CClientInit::mutable_gird_theme(int index) {
+  // @@protoc_insertion_point(field_mutable:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_.Mutable(index);
+}
+inline ::message::MsgIntPair* MsgS2CClientInit::add_gird_theme() {
+  // @@protoc_insertion_point(field_add:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >&
+MsgS2CClientInit::gird_theme() const {
+  // @@protoc_insertion_point(field_list:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >*
+MsgS2CClientInit::mutable_gird_theme() {
+  // @@protoc_insertion_point(field_mutable_list:message.MsgS2CClientInit.gird_theme)
+  return &gird_theme_;
 }
 
 // -------------------------------------------------------------------

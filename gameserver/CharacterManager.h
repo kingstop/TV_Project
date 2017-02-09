@@ -9,7 +9,7 @@ public:
 	void CreateCharacter(message::MsgCharacterDataDB2GSACK* msg);	
 	Character* CreateCharacter();
 	Character* GetCharacter(u64 id);
-	
+	void Destroy(Character* p);
 	void LoadCharacter(u64 id, Session* s);	
 	void SetMaxCharacterID(int id);
 protected:

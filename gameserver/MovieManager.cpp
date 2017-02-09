@@ -107,6 +107,19 @@ void MovieManager::Load(DBQuery* p)
 			entry.second = ratting;
 			_theme_movie_ids[theme_id].push_back(entry);
 		}
+
+		query.reset();
+		sResult.clear();
+		query << "select * from `main_panel_layout`";
+		sResult = query.store();
+		rows_length = sResult.num_rows();
+		for (int i = 0; i < rows_length; i++)
+		{
+			DBRow& row = sResult[i];
+			int grid_id = row["grid_id"];
+			int theme_id = row["theme_id"];
+			_grid_theme[grid_id] = theme_id;
+		}
 	}
 }
 
@@ -183,4 +196,9 @@ const std::list<std::pair<int, int>>* MovieManager::getThemeMovies(int id)
 		entry_list = &(it->second);
 	}
 	return entry_list;
+}
+
+const std::map<int, int>* MovieManager::getGridTheme()
+{
+	return &_grid_theme;
 }

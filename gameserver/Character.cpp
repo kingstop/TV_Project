@@ -38,7 +38,35 @@ void Character::RemoveSession(Session* s)
 			break;
 		}
 	}
+	if (_sessions.size() == 0)
+	{
+		StartDestroyClock();
+	}
 }
+
+void Character::AddSession(Session* s)
+{
+	bool ret = false;
+	std::list<Session*>::iterator it = _sessions.begin();
+	for (; it != _sessions.end(); ++it)
+	{
+		if ((*it) == s)
+		{
+			ret = true;
+			break;
+		}
+	}
+
+	if (ret == false)
+	{
+		_sessions.push_back(s);
+		if (_sessions.size() == 1)
+		{
+			StopDestroyClock();
+		}
+	}
+}
+
 
 void Character::StartSave()
 {
@@ -61,7 +89,7 @@ void Character::StartDestroyClock()
 
 void Character::Destroy()
 {
-
+	gCharacterManager.Destroy(this);
 }
 
 void Character::StopDestroyClock()
@@ -80,6 +108,14 @@ void Character::SendClienInit(Session* s)
 	msg.set_config_video_path("");
 	msg.set_vip(_vip_level);
 	msg.set_resource_path("");
+	const std::map<int, int>* map = gMovieManager.getGridTheme();
+	std::map<int, int>::const_iterator it_grid = map->begin();
+	for (; it_grid != map->end(); ++ it_grid)
+	{
+		msg.add_gird_theme()->set_number_1(it_grid->first);
+		msg.add_gird_theme()->set_number_2(it_grid->second);
+	}
+
 	std::map<int, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
 	for (; it != _watch_records.end(); ++ it)
 	{
@@ -87,24 +123,6 @@ void Character::SendClienInit(Session* s)
 	}
 }
 
-void Character::AddSession(Session* s)
-{
-	bool ret = false;
-	std::list<Session*>::iterator it = _sessions.begin();
-	for (; it != _sessions.end(); ++ it)
-	{
-		if ((*it) == s)
-		{
-			ret = true;
-			break;
-		}
-	}
-
-	if (ret == false)
-	{
-		_sessions.push_back(s);
-	}
-}
 
 
 void Character::Save()
@@ -170,4 +188,5 @@ void Character::Create(message::MsgCharacterDataDB2GSACK* msg)
 		const message::MsgMovieExternal* movie_external = gMovieManager.getMovie(movie_id);
 		_collection_theme.add_movies_externals()->CopyFrom(*movie_external);
 	}		
+	
 }

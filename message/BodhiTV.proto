@@ -22,6 +22,7 @@ message MsgS2CClientInit
 	required string resource_path = 3;
 	required string config_pic_path = 4;
 	required string config_video_path = 5;
+	repeated MsgIntPair gird_theme = 6;
 }
 
 message MsgC2SReqThemeInfo

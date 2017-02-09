@@ -81,12 +81,13 @@ void protobuf_AssignDesc_BodhiTV_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgS2CMovieThemesACK, _internal_metadata_),
       -1);
   MsgS2CClientInit_descriptor_ = file->message_type(2);
-  static const int MsgS2CClientInit_offsets_[5] = {
+  static const int MsgS2CClientInit_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgS2CClientInit, watch_record_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgS2CClientInit, vip_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgS2CClientInit, resource_path_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgS2CClientInit, config_pic_path_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgS2CClientInit, config_video_path_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgS2CClientInit, gird_theme_),
   };
   MsgS2CClientInit_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -217,16 +218,17 @@ void protobuf_AddDesc_BodhiTV_2eproto() {
     "\n\rBodhiTV.proto\022\007message\032\014common.proto\"\026"
     "\n\024MsgC2SReqMovieThemes\"E\n\024MsgS2CMovieThe"
     "mesACK\022-\n\005infos\030\001 \003(\0132\036.message.MsgMovie"
-    "ThemeExternal\"\235\001\n\020MsgS2CClientInit\0221\n\014wa"
+    "ThemeExternal\"\306\001\n\020MsgS2CClientInit\0221\n\014wa"
     "tch_record\030\001 \003(\0132\033.message.MsgWatchRecor"
     "dInfo\022\013\n\003vip\030\002 \002(\005\022\025\n\rresource_path\030\003 \002("
     "\t\022\027\n\017config_pic_path\030\004 \002(\t\022\031\n\021config_vid"
-    "eo_path\030\005 \002(\t\"&\n\022MsgC2SReqThemeInfo\022\020\n\010T"
-    "heme_id\030\001 \002(\005\"\?\n\027MsgS2CMovieThemeInfoACK"
-    "\022$\n\004info\030\001 \002(\0132\026.message.MsgMovieTheme\"&"
-    "\n\022MsgC2SReqMovieInfo\022\020\n\010movie_id\030\001 \002(\005\"5"
-    "\n\022MsgS2CMovieInfoACK\022\037\n\004info\030\001 \002(\0132\021.mes"
-    "sage.MsgMovie", 493);
+    "eo_path\030\005 \002(\t\022\'\n\ngird_theme\030\006 \003(\0132\023.mess"
+    "age.MsgIntPair\"&\n\022MsgC2SReqThemeInfo\022\020\n\010"
+    "Theme_id\030\001 \002(\005\"\?\n\027MsgS2CMovieThemeInfoAC"
+    "K\022$\n\004info\030\001 \002(\0132\026.message.MsgMovieTheme\""
+    "&\n\022MsgC2SReqMovieInfo\022\020\n\010movie_id\030\001 \002(\005\""
+    "5\n\022MsgS2CMovieInfoACK\022\037\n\004info\030\001 \002(\0132\021.me"
+    "ssage.MsgMovie", 534);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "BodhiTV.proto", &protobuf_RegisterTypes);
   MsgC2SReqMovieThemes::default_instance_ = new MsgC2SReqMovieThemes();
@@ -725,6 +727,7 @@ const int MsgS2CClientInit::kVipFieldNumber;
 const int MsgS2CClientInit::kResourcePathFieldNumber;
 const int MsgS2CClientInit::kConfigPicPathFieldNumber;
 const int MsgS2CClientInit::kConfigVideoPathFieldNumber;
+const int MsgS2CClientInit::kGirdThemeFieldNumber;
 #endif  // !_MSC_VER
 
 MsgS2CClientInit::MsgS2CClientInit()
@@ -806,6 +809,7 @@ void MsgS2CClientInit::Clear() {
     }
   }
   watch_record_.Clear();
+  gird_theme_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -898,6 +902,20 @@ bool MsgS2CClientInit::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(50)) goto parse_gird_theme;
+        break;
+      }
+
+      // repeated .message.MsgIntPair gird_theme = 6;
+      case 6: {
+        if (tag == 50) {
+         parse_gird_theme:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_gird_theme()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(50)) goto parse_gird_theme;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -968,6 +986,12 @@ void MsgS2CClientInit::SerializeWithCachedSizes(
       5, this->config_video_path(), output);
   }
 
+  // repeated .message.MsgIntPair gird_theme = 6;
+  for (unsigned int i = 0, n = this->gird_theme_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, this->gird_theme(i), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1021,6 +1045,13 @@ void MsgS2CClientInit::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         5, this->config_video_path(), target);
+  }
+
+  // repeated .message.MsgIntPair gird_theme = 6;
+  for (unsigned int i = 0, n = this->gird_theme_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, this->gird_theme(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1099,6 +1130,14 @@ int MsgS2CClientInit::ByteSize() const {
         this->watch_record(i));
   }
 
+  // repeated .message.MsgIntPair gird_theme = 6;
+  total_size += 1 * this->gird_theme_size();
+  for (int i = 0; i < this->gird_theme_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->gird_theme(i));
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -1125,6 +1164,7 @@ void MsgS2CClientInit::MergeFrom(const ::google::protobuf::Message& from) {
 void MsgS2CClientInit::MergeFrom(const MsgS2CClientInit& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   watch_record_.MergeFrom(from.watch_record_);
+  gird_theme_.MergeFrom(from.gird_theme_);
   if (from._has_bits_[1 / 32] & (0xffu << (1 % 32))) {
     if (from.has_vip()) {
       set_vip(from.vip());
@@ -1163,6 +1203,7 @@ bool MsgS2CClientInit::IsInitialized() const {
   if ((_has_bits_[0] & 0x0000001e) != 0x0000001e) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->watch_record())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->gird_theme())) return false;
   return true;
 }
 
@@ -1176,6 +1217,7 @@ void MsgS2CClientInit::InternalSwap(MsgS2CClientInit* other) {
   resource_path_.Swap(&other->resource_path_);
   config_pic_path_.Swap(&other->config_pic_path_);
   config_video_path_.Swap(&other->config_video_path_);
+  gird_theme_.UnsafeArenaSwap(&other->gird_theme_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1403,6 +1445,36 @@ MsgS2CClientInit::mutable_watch_record() {
   }
   config_video_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), config_video_path);
   // @@protoc_insertion_point(field_set_allocated:message.MsgS2CClientInit.config_video_path)
+}
+
+// repeated .message.MsgIntPair gird_theme = 6;
+ int MsgS2CClientInit::gird_theme_size() const {
+  return gird_theme_.size();
+}
+ void MsgS2CClientInit::clear_gird_theme() {
+  gird_theme_.Clear();
+}
+ const ::message::MsgIntPair& MsgS2CClientInit::gird_theme(int index) const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_.Get(index);
+}
+ ::message::MsgIntPair* MsgS2CClientInit::mutable_gird_theme(int index) {
+  // @@protoc_insertion_point(field_mutable:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_.Mutable(index);
+}
+ ::message::MsgIntPair* MsgS2CClientInit::add_gird_theme() {
+  // @@protoc_insertion_point(field_add:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_.Add();
+}
+ const ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >&
+MsgS2CClientInit::gird_theme() const {
+  // @@protoc_insertion_point(field_list:message.MsgS2CClientInit.gird_theme)
+  return gird_theme_;
+}
+ ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >*
+MsgS2CClientInit::mutable_gird_theme() {
+  // @@protoc_insertion_point(field_mutable_list:message.MsgS2CClientInit.gird_theme)
+  return &gird_theme_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
