@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Character.h"
+#include "session.h"
 #define _SAVE_CHARACTER_TIME_ 6 * _TIME_MINUTE_ * _TIME_SECOND_MSEL_
 #define _DESTROY_CHARACTER_TIME_ 5 * _SAVE_CHARACTER_TIME_
 Character::Character()
@@ -103,24 +104,29 @@ void Character::StopDestroyClock()
 
 void Character::SendClienInit(Session* s)
 {
-	message::MsgS2CClientInit msg;
-	msg.set_config_pic_path("");
-	msg.set_config_video_path("");
-	msg.set_vip(_vip_level);
-	msg.set_resource_path("");
-	const std::map<int, int>* map = gMovieManager.getGridTheme();
-	std::map<int, int>::const_iterator it_grid = map->begin();
-	for (; it_grid != map->end(); ++ it_grid)
+	if (s != NULL)
 	{
-		msg.add_gird_theme()->set_number_1(it_grid->first);
-		msg.add_gird_theme()->set_number_2(it_grid->second);
+		message::MsgS2CClientInit msg;
+		msg.set_config_pic_path("");
+		msg.set_config_video_path("");
+		msg.set_vip(_vip_level);
+		msg.set_resource_path("");
+		const std::map<int, int>* map = gMovieManager.getGridTheme();
+		std::map<int, int>::const_iterator it_grid = map->begin();
+		for (; it_grid != map->end(); ++it_grid)
+		{
+			msg.add_gird_theme()->set_number_1(it_grid->first);
+			msg.add_gird_theme()->set_number_2(it_grid->second);
+		}
+
+		std::map<int, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
+		for (; it != _watch_records.end(); ++it)
+		{
+			msg.add_watch_record()->CopyFrom(it->second);
+		}
+		s->sendPBMessage(&msg);
 	}
 
-	std::map<int, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
-	for (; it != _watch_records.end(); ++ it)
-	{
-		msg.add_watch_record()->CopyFrom(it->second);
-	}
 }
 
 
