@@ -7,6 +7,12 @@
 ClientTest::ClientTest()
     :m_EventHold(WORLD_INSTANCE)
 {
+
+
+	message::protobuf_AssignDesc_common_2eproto();
+	message::protobuf_AssignDesc_login_2eproto();
+	message::protobuf_AssignDesc_BodhiTV_2eproto();
+
     m_maxCount = m_onceCount = m_curCount = m_accountBegin = 0;
     m_Online = 0;
     m_TransCount = 0;

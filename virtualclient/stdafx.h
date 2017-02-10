@@ -57,6 +57,7 @@
 #include "message/msgs2s.pb.h"
 #include "message/msg_gate_game.pb.h"
 #include "message/msg_game_db.pb.h"
+#include "message/BodhiTV.pb.h"
 //#include "message/dream_heroes.pb.h"
 #include "event_table_object.h"
 #include "client_manager.h"

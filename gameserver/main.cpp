@@ -26,6 +26,7 @@ bool init()
 {
 	message::protobuf_AssignDesc_common_2eproto();
 	message::protobuf_AssignDesc_login_2eproto();
+	message::protobuf_AssignDesc_BodhiTV_2eproto();
 	message::protobuf_AssignDesc_msgs2s_2eproto();
 	//message::protobuf_AssignDesc_msgs2c_2eproto();
 	message::protobuf_AssignDesc_msg_5fgame_5fdb_2eproto();
@@ -33,7 +34,7 @@ bool init()
 	message::protobuf_AssignDesc_msg_5fgame_5fdb_2eproto();
 //	message::protobuf_AssignDesc_dream_5fheroes_2eproto();
 	IPlatformPayProto::protobuf_AssignDesc_msg_5fgame_5fplatform_2eproto();
-	message::protobuf_AssignDesc_BodhiTV_2eproto();
+	
 	//message::protobuf_AssignDesc_dream_5fhero_2eproto();
 	Mylog::log_init(LOG4CXX_LOG_CONFIG);
 	GameDBClient::initPBModule();

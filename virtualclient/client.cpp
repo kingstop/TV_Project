@@ -25,7 +25,7 @@ void Client::initPBModule()
 {
     ProtocMsgBase<Client>::registerSDFun(&Client::send_message, NULL);
     ProtocMsgBase<Client>::registerCBFun(PROTOCO_NAME(message::LoginResponse), &Client::parseLoginResult);
-	//ProtocMsgBase<Client>::registerCBFun(PROTOCO_NAME(message::MsgS2CHeroesInit), &Client::parseClientInit);
+	ProtocMsgBase<Client>::registerCBFun(PROTOCO_NAME(message::MsgS2CClientInit), &Client::parseClientInit);
 	ProtocMsgBase<Client>::registerCBFun(PROTOCO_NAME(message::MsgS2CPingNotify), &Client::parseMsgPing);
 	//ProtocMsgBase<Client>::registerCBFun(PROTOCO_NAME(message::S2CMsgHeroEquip), &Client::parseMsgHeroEquip);
 	//ProtocMsgBase<Client>::registerCBFun(PROTOCO_NAME(message::S2CMsgToyInit), &Client::parseMsgToyInit);
@@ -131,7 +131,7 @@ void Client::on_connect()
             msg.set_pwd("123456");
 			msg.set_channel(0);
 			msg.mutable_version()->set_number_1(3);
-			msg.mutable_version()->set_number_2(2);
+			msg.mutable_version()->set_number_2(3);
 			msg.mutable_version()->set_number_3(0);
             sendPBMessage(&msg);
 			//static int login = 0;
@@ -209,8 +209,8 @@ void Client::proc_message( const message_t& msg )
 
 void Client::parseMsgHeroInit(google::protobuf::Message* p, pb_flag_type flag)
 {
-	//message::S2CMsgHeroInit* msg = (message::S2CMsgHeroInit*)p;
-	//Instance.client_manage_.addOnlineClient(this);
+	message::MsgS2CClientInit* msg = (message::MsgS2CClientInit*)p;
+	Instance.client_manage_.addOnlineClient(this);
 }
 //
 //void Client::parseMsgHeroEquip(google::protobuf::Message* p, pb_flag_type flag)

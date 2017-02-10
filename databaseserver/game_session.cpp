@@ -42,11 +42,12 @@ void GameSession::initPBModule()
 {
 	ProtocMsgBase<GameSession>::registerSDFun(&GameSession::send_message, &GameSession::parseGameMsg);
 	ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgServerRegister),&GameSession::parseGameRegister);
-	ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgReqHeroDataGS2DB), &GameSession::parseMsgReqHeroDataGS2DB);
+	ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgReqCharacterDataGS2DB), &GameSession::parseMsgReqCharacterDataGS2DB);
 	ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgSaveDataGS2DB), &GameSession::parseMsgSaveHeroData);
-	//ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgSaveAllHeroesGS2DB), &GameSession::parseMsgSaveAllHeroesGS2DB);
 	ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgRecordSqlGS2DB), &GameSession::parseMsgSaveRecordGS2DB);
-	//ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgVerifyToyGS2DB), &GameSession::parseMsgVerifyToy);
+	ProtocMsgBase<GameSession>::registerCBFun(PROTOCO_NAME(message::MsgReqCharacterIDGS2DB), &GameSession::parseMsgReqCharacterIDGS2DB);
+
+	
 }
 
 void GameSession::parseMsgReqCharacterDataGS2DB(google::protobuf::Message* p, pb_flag_type flag)
