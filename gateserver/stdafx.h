@@ -18,6 +18,7 @@
 #include "message/msg_gate_login.pb.h"
 #include "message/msgs2s.pb.h"
 #include "message/msg_gate_game.pb.h"
+#include "message/BodhiTV.pb.h"
 //#include "message/dream_heroes.pb.h"
 //#include "message/girls.pb.h"
 #include "version.h"

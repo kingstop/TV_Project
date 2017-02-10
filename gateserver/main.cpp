@@ -19,6 +19,7 @@ bool init()
 	message::protobuf_AssignDesc_msg_5fgame_5fdb_2eproto();
 	message::protobuf_AssignDesc_msg_5fgate_5fgame_2eproto();
 	message::protobuf_AssignDesc_msg_5fgame_5fdb_2eproto();
+	message::protobuf_AssignDesc_BodhiTV_2eproto();
 	//message::protobuf_AssignDesc_dream_5fheroes_2eproto();
 	//message::protobuf_AssignDesc_dream_5fhero_2eproto();
     Mylog::log_init(LOG4CXX_LOG_CONFIG);
