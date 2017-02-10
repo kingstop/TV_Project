@@ -178,9 +178,10 @@ void protobuf_AssignDesc_common_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieThemeExternal, _internal_metadata_),
       -1);
   MsgMovieTheme_descriptor_ = file->message_type(7);
-  static const int MsgMovieTheme_offsets_[2] = {
+  static const int MsgMovieTheme_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieTheme, theme_external_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieTheme, movies_externals_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieTheme, movie_ratting_),
   };
   MsgMovieTheme_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -254,14 +255,14 @@ void protobuf_AddDesc_common_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\014common.proto\022\007message\"0\n\nMsgIntPair\022\020\n"
-    "\010number_1\030\001 \002(\005\022\020\n\010number_2\030\002 \002(\005\"/\n\016Msg"
+    "\010number_1\030\001 \002(\003\022\020\n\010number_2\030\002 \002(\003\"/\n\016Msg"
     "IntBoolPair\022\016\n\006number\030\001 \002(\005\022\r\n\005valid\030\002 \002"
     "(\010\"X\n\022MsgWatchRecordInfo\022\020\n\010movie_id\030\001 \002"
-    "(\005\022\020\n\010video_id\030\002 \002(\005\022\020\n\010Progress\030\003 \002(\005\022\014"
-    "\n\004time\030\004 \002(\r\"X\n\010MsgVideo\022\014\n\004path\030\001 \002(\t\022\020"
+    "(\003\022\020\n\010video_id\030\002 \002(\003\022\020\n\010Progress\030\003 \002(\005\022\014"
+    "\n\004time\030\004 \002(\003\"X\n\010MsgVideo\022\014\n\004path\030\001 \002(\t\022\020"
     "\n\010describe\030\002 \002(\t\022\014\n\004rank\030\003 \002(\005\022\020\n\010video_"
-    "id\030\004 \002(\005\022\014\n\004name\030\005 \002(\t\"w\n\020MsgMovieExtern"
-    "al\022\020\n\010movie_id\030\001 \002(\005\022\020\n\010describe\030\002 \002(\t\0221"
+    "id\030\004 \002(\003\022\014\n\004name\030\005 \002(\t\"w\n\020MsgMovieExtern"
+    "al\022\020\n\010movie_id\030\001 \002(\003\022\020\n\010describe\030\002 \002(\t\0221"
     "\n\004type\030\003 \002(\0162\022.message.VideoType:\017VideoT"
     "ype_Video\022\014\n\004name\030\004 \002(\t\"Z\n\010MsgMovie\022+\n\010e"
     "xternal\030\001 \002(\0132\031.message.MsgMovieExternal"
@@ -269,18 +270,19 @@ void protobuf_AddDesc_common_2eproto() {
     "sgMovieThemeExternal\022\014\n\004name\030\001 \002(\t\022\020\n\010de"
     "scribe\030\002 \002(\t\0227\n\004type\030\003 \002(\0162\022.message.Mov"
     "ieType:\025MovieType_MyFavourite\022\n\n\002id\030\004 \002("
-    "\005\"|\n\rMsgMovieTheme\0226\n\016theme_external\030\001 \002"
-    "(\0132\036.message.MsgMovieThemeExternal\0223\n\020mo"
-    "vies_externals\030\002 \003(\0132\031.message.MsgMovieE"
-    "xternal*5\n\tVideoType\022\023\n\017VideoType_Video\020"
-    "\000\022\023\n\017VideoType_Movie\020\001*\207\002\n\tMovieType\022\032\n\026"
-    "MovieType_RecentlyPlay\020\000\022\031\n\025MovieType_My"
-    "Favourite\020\001\022\034\n\030MovieType_DerivativeShop\020"
-    "\002\022\026\n\022MovieType_Festival\020\003\022\022\n\016MovieType_R"
-    "ank\020\004\022\025\n\021MovieType_Feature\020\005\022#\n\037MovieTyp"
-    "e_CartoonRecommendation\020\006\022*\n&MovieType_E"
-    "arlyEducationRecommendation\020\007\022\021\n\rMovieTy"
-    "pe_New\020\010", 1088);
+    "\003\"\250\001\n\rMsgMovieTheme\0226\n\016theme_external\030\001 "
+    "\002(\0132\036.message.MsgMovieThemeExternal\0223\n\020m"
+    "ovies_externals\030\002 \003(\0132\031.message.MsgMovie"
+    "External\022*\n\rmovie_ratting\030\003 \003(\0132\023.messag"
+    "e.MsgIntPair*5\n\tVideoType\022\023\n\017VideoType_V"
+    "ideo\020\000\022\023\n\017VideoType_Movie\020\001*\207\002\n\tMovieTyp"
+    "e\022\032\n\026MovieType_RecentlyPlay\020\000\022\031\n\025MovieTy"
+    "pe_MyFavourite\020\001\022\034\n\030MovieType_Derivative"
+    "Shop\020\002\022\026\n\022MovieType_Festival\020\003\022\022\n\016MovieT"
+    "ype_Rank\020\004\022\025\n\021MovieType_Feature\020\005\022#\n\037Mov"
+    "ieType_CartoonRecommendation\020\006\022*\n&MovieT"
+    "ype_EarlyEducationRecommendation\020\007\022\021\n\rMo"
+    "vieType_New\020\010", 1133);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "common.proto", &protobuf_RegisterTypes);
   MsgIntPair::default_instance_ = new MsgIntPair();
@@ -380,8 +382,8 @@ MsgIntPair::MsgIntPair(const MsgIntPair& from)
 
 void MsgIntPair::SharedCtor() {
   _cached_size_ = 0;
-  number_1_ = 0;
-  number_2_ = 0;
+  number_1_ = GOOGLE_LONGLONG(0);
+  number_2_ = GOOGLE_LONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -450,11 +452,11 @@ bool MsgIntPair::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 number_1 = 1;
+      // required int64 number_1 = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &number_1_)));
           set_has_number_1();
         } else {
@@ -464,12 +466,12 @@ bool MsgIntPair::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 number_2 = 2;
+      // required int64 number_2 = 2;
       case 2: {
         if (tag == 16) {
          parse_number_2:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &number_2_)));
           set_has_number_2();
         } else {
@@ -504,14 +506,14 @@ failure:
 void MsgIntPair::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:message.MsgIntPair)
-  // required int32 number_1 = 1;
+  // required int64 number_1 = 1;
   if (has_number_1()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->number_1(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->number_1(), output);
   }
 
-  // required int32 number_2 = 2;
+  // required int64 number_2 = 2;
   if (has_number_2()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->number_2(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->number_2(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -524,14 +526,14 @@ void MsgIntPair::SerializeWithCachedSizes(
 ::google::protobuf::uint8* MsgIntPair::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:message.MsgIntPair)
-  // required int32 number_1 = 1;
+  // required int64 number_1 = 1;
   if (has_number_1()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->number_1(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->number_1(), target);
   }
 
-  // required int32 number_2 = 2;
+  // required int64 number_2 = 2;
   if (has_number_2()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->number_2(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->number_2(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -546,16 +548,16 @@ int MsgIntPair::RequiredFieldsByteSizeFallback() const {
   int total_size = 0;
 
   if (has_number_1()) {
-    // required int32 number_1 = 1;
+    // required int64 number_1 = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->number_1());
   }
 
   if (has_number_2()) {
-    // required int32 number_2 = 2;
+    // required int64 number_2 = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->number_2());
   }
 
@@ -565,14 +567,14 @@ int MsgIntPair::ByteSize() const {
   int total_size = 0;
 
   if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
-    // required int32 number_1 = 1;
+    // required int64 number_1 = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->number_1());
 
-    // required int32 number_2 = 2;
+    // required int64 number_2 = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->number_2());
 
   } else {
@@ -657,7 +659,7 @@ void MsgIntPair::InternalSwap(MsgIntPair* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // MsgIntPair
 
-// required int32 number_1 = 1;
+// required int64 number_1 = 1;
  bool MsgIntPair::has_number_1() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -668,20 +670,20 @@ void MsgIntPair::InternalSwap(MsgIntPair* other) {
   _has_bits_[0] &= ~0x00000001u;
 }
  void MsgIntPair::clear_number_1() {
-  number_1_ = 0;
+  number_1_ = GOOGLE_LONGLONG(0);
   clear_has_number_1();
 }
- ::google::protobuf::int32 MsgIntPair::number_1() const {
+ ::google::protobuf::int64 MsgIntPair::number_1() const {
   // @@protoc_insertion_point(field_get:message.MsgIntPair.number_1)
   return number_1_;
 }
- void MsgIntPair::set_number_1(::google::protobuf::int32 value) {
+ void MsgIntPair::set_number_1(::google::protobuf::int64 value) {
   set_has_number_1();
   number_1_ = value;
   // @@protoc_insertion_point(field_set:message.MsgIntPair.number_1)
 }
 
-// required int32 number_2 = 2;
+// required int64 number_2 = 2;
  bool MsgIntPair::has_number_2() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -692,14 +694,14 @@ void MsgIntPair::InternalSwap(MsgIntPair* other) {
   _has_bits_[0] &= ~0x00000002u;
 }
  void MsgIntPair::clear_number_2() {
-  number_2_ = 0;
+  number_2_ = GOOGLE_LONGLONG(0);
   clear_has_number_2();
 }
- ::google::protobuf::int32 MsgIntPair::number_2() const {
+ ::google::protobuf::int64 MsgIntPair::number_2() const {
   // @@protoc_insertion_point(field_get:message.MsgIntPair.number_2)
   return number_2_;
 }
- void MsgIntPair::set_number_2(::google::protobuf::int32 value) {
+ void MsgIntPair::set_number_2(::google::protobuf::int64 value) {
   set_has_number_2();
   number_2_ = value;
   // @@protoc_insertion_point(field_set:message.MsgIntPair.number_2)
@@ -1084,10 +1086,10 @@ MsgWatchRecordInfo::MsgWatchRecordInfo(const MsgWatchRecordInfo& from)
 
 void MsgWatchRecordInfo::SharedCtor() {
   _cached_size_ = 0;
-  movie_id_ = 0;
-  video_id_ = 0;
+  movie_id_ = GOOGLE_LONGLONG(0);
+  video_id_ = GOOGLE_LONGLONG(0);
   progress_ = 0;
-  time_ = 0u;
+  time_ = GOOGLE_LONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1135,7 +1137,7 @@ void MsgWatchRecordInfo::Clear() {
            ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
 } while (0)
 
-  ZR_(movie_id_, time_);
+  ZR_(movie_id_, progress_);
 
 #undef ZR_HELPER_
 #undef ZR_
@@ -1156,11 +1158,11 @@ bool MsgWatchRecordInfo::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 movie_id = 1;
+      // required int64 movie_id = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &movie_id_)));
           set_has_movie_id();
         } else {
@@ -1170,12 +1172,12 @@ bool MsgWatchRecordInfo::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 video_id = 2;
+      // required int64 video_id = 2;
       case 2: {
         if (tag == 16) {
          parse_video_id:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &video_id_)));
           set_has_video_id();
         } else {
@@ -1200,12 +1202,12 @@ bool MsgWatchRecordInfo::MergePartialFromCodedStream(
         break;
       }
 
-      // required uint32 time = 4;
+      // required int64 time = 4;
       case 4: {
         if (tag == 32) {
          parse_time:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &time_)));
           set_has_time();
         } else {
@@ -1240,14 +1242,14 @@ failure:
 void MsgWatchRecordInfo::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:message.MsgWatchRecordInfo)
-  // required int32 movie_id = 1;
+  // required int64 movie_id = 1;
   if (has_movie_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->movie_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->movie_id(), output);
   }
 
-  // required int32 video_id = 2;
+  // required int64 video_id = 2;
   if (has_video_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->video_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->video_id(), output);
   }
 
   // required int32 Progress = 3;
@@ -1255,9 +1257,9 @@ void MsgWatchRecordInfo::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->progress(), output);
   }
 
-  // required uint32 time = 4;
+  // required int64 time = 4;
   if (has_time()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->time(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->time(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1270,14 +1272,14 @@ void MsgWatchRecordInfo::SerializeWithCachedSizes(
 ::google::protobuf::uint8* MsgWatchRecordInfo::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:message.MsgWatchRecordInfo)
-  // required int32 movie_id = 1;
+  // required int64 movie_id = 1;
   if (has_movie_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->movie_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->movie_id(), target);
   }
 
-  // required int32 video_id = 2;
+  // required int64 video_id = 2;
   if (has_video_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->video_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->video_id(), target);
   }
 
   // required int32 Progress = 3;
@@ -1285,9 +1287,9 @@ void MsgWatchRecordInfo::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->progress(), target);
   }
 
-  // required uint32 time = 4;
+  // required int64 time = 4;
   if (has_time()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->time(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->time(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1302,16 +1304,16 @@ int MsgWatchRecordInfo::RequiredFieldsByteSizeFallback() const {
   int total_size = 0;
 
   if (has_movie_id()) {
-    // required int32 movie_id = 1;
+    // required int64 movie_id = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->movie_id());
   }
 
   if (has_video_id()) {
-    // required int32 video_id = 2;
+    // required int64 video_id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->video_id());
   }
 
@@ -1323,9 +1325,9 @@ int MsgWatchRecordInfo::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_time()) {
-    // required uint32 time = 4;
+    // required int64 time = 4;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->time());
   }
 
@@ -1335,14 +1337,14 @@ int MsgWatchRecordInfo::ByteSize() const {
   int total_size = 0;
 
   if (((_has_bits_[0] & 0x0000000f) ^ 0x0000000f) == 0) {  // All required fields are present.
-    // required int32 movie_id = 1;
+    // required int64 movie_id = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->movie_id());
 
-    // required int32 video_id = 2;
+    // required int64 video_id = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->video_id());
 
     // required int32 Progress = 3;
@@ -1350,9 +1352,9 @@ int MsgWatchRecordInfo::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->progress());
 
-    // required uint32 time = 4;
+    // required int64 time = 4;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->time());
 
   } else {
@@ -1445,7 +1447,7 @@ void MsgWatchRecordInfo::InternalSwap(MsgWatchRecordInfo* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // MsgWatchRecordInfo
 
-// required int32 movie_id = 1;
+// required int64 movie_id = 1;
  bool MsgWatchRecordInfo::has_movie_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1456,20 +1458,20 @@ void MsgWatchRecordInfo::InternalSwap(MsgWatchRecordInfo* other) {
   _has_bits_[0] &= ~0x00000001u;
 }
  void MsgWatchRecordInfo::clear_movie_id() {
-  movie_id_ = 0;
+  movie_id_ = GOOGLE_LONGLONG(0);
   clear_has_movie_id();
 }
- ::google::protobuf::int32 MsgWatchRecordInfo::movie_id() const {
+ ::google::protobuf::int64 MsgWatchRecordInfo::movie_id() const {
   // @@protoc_insertion_point(field_get:message.MsgWatchRecordInfo.movie_id)
   return movie_id_;
 }
- void MsgWatchRecordInfo::set_movie_id(::google::protobuf::int32 value) {
+ void MsgWatchRecordInfo::set_movie_id(::google::protobuf::int64 value) {
   set_has_movie_id();
   movie_id_ = value;
   // @@protoc_insertion_point(field_set:message.MsgWatchRecordInfo.movie_id)
 }
 
-// required int32 video_id = 2;
+// required int64 video_id = 2;
  bool MsgWatchRecordInfo::has_video_id() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1480,14 +1482,14 @@ void MsgWatchRecordInfo::InternalSwap(MsgWatchRecordInfo* other) {
   _has_bits_[0] &= ~0x00000002u;
 }
  void MsgWatchRecordInfo::clear_video_id() {
-  video_id_ = 0;
+  video_id_ = GOOGLE_LONGLONG(0);
   clear_has_video_id();
 }
- ::google::protobuf::int32 MsgWatchRecordInfo::video_id() const {
+ ::google::protobuf::int64 MsgWatchRecordInfo::video_id() const {
   // @@protoc_insertion_point(field_get:message.MsgWatchRecordInfo.video_id)
   return video_id_;
 }
- void MsgWatchRecordInfo::set_video_id(::google::protobuf::int32 value) {
+ void MsgWatchRecordInfo::set_video_id(::google::protobuf::int64 value) {
   set_has_video_id();
   video_id_ = value;
   // @@protoc_insertion_point(field_set:message.MsgWatchRecordInfo.video_id)
@@ -1517,7 +1519,7 @@ void MsgWatchRecordInfo::InternalSwap(MsgWatchRecordInfo* other) {
   // @@protoc_insertion_point(field_set:message.MsgWatchRecordInfo.Progress)
 }
 
-// required uint32 time = 4;
+// required int64 time = 4;
  bool MsgWatchRecordInfo::has_time() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -1528,14 +1530,14 @@ void MsgWatchRecordInfo::InternalSwap(MsgWatchRecordInfo* other) {
   _has_bits_[0] &= ~0x00000008u;
 }
  void MsgWatchRecordInfo::clear_time() {
-  time_ = 0u;
+  time_ = GOOGLE_LONGLONG(0);
   clear_has_time();
 }
- ::google::protobuf::uint32 MsgWatchRecordInfo::time() const {
+ ::google::protobuf::int64 MsgWatchRecordInfo::time() const {
   // @@protoc_insertion_point(field_get:message.MsgWatchRecordInfo.time)
   return time_;
 }
- void MsgWatchRecordInfo::set_time(::google::protobuf::uint32 value) {
+ void MsgWatchRecordInfo::set_time(::google::protobuf::int64 value) {
   set_has_time();
   time_ = value;
   // @@protoc_insertion_point(field_set:message.MsgWatchRecordInfo.time)
@@ -1576,7 +1578,7 @@ void MsgVideo::SharedCtor() {
   path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   describe_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   rank_ = 0;
-  video_id_ = 0;
+  video_id_ = GOOGLE_LONGLONG(0);
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1620,30 +1622,19 @@ MsgVideo* MsgVideo::New(::google::protobuf::Arena* arena) const {
 }
 
 void MsgVideo::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<MsgVideo*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
   if (_has_bits_[0 / 32] & 31) {
-    ZR_(rank_, video_id_);
     if (has_path()) {
       path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
     if (has_describe()) {
       describe_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
+    rank_ = 0;
+    video_id_ = GOOGLE_LONGLONG(0);
     if (has_name()) {
       name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
   }
-
-#undef ZR_HELPER_
-#undef ZR_
-
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -1708,12 +1699,12 @@ bool MsgVideo::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 video_id = 4;
+      // required int64 video_id = 4;
       case 4: {
         if (tag == 32) {
          parse_video_id:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &video_id_)));
           set_has_video_id();
         } else {
@@ -1790,9 +1781,9 @@ void MsgVideo::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->rank(), output);
   }
 
-  // required int32 video_id = 4;
+  // required int64 video_id = 4;
   if (has_video_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->video_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->video_id(), output);
   }
 
   // required string name = 5;
@@ -1842,9 +1833,9 @@ void MsgVideo::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->rank(), target);
   }
 
-  // required int32 video_id = 4;
+  // required int64 video_id = 4;
   if (has_video_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->video_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->video_id(), target);
   }
 
   // required string name = 5;
@@ -1891,9 +1882,9 @@ int MsgVideo::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_video_id()) {
-    // required int32 video_id = 4;
+    // required int64 video_id = 4;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->video_id());
   }
 
@@ -1925,9 +1916,9 @@ int MsgVideo::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->rank());
 
-    // required int32 video_id = 4;
+    // required int64 video_id = 4;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->video_id());
 
     // required string name = 5;
@@ -2162,7 +2153,7 @@ void MsgVideo::InternalSwap(MsgVideo* other) {
   // @@protoc_insertion_point(field_set:message.MsgVideo.rank)
 }
 
-// required int32 video_id = 4;
+// required int64 video_id = 4;
  bool MsgVideo::has_video_id() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -2173,14 +2164,14 @@ void MsgVideo::InternalSwap(MsgVideo* other) {
   _has_bits_[0] &= ~0x00000008u;
 }
  void MsgVideo::clear_video_id() {
-  video_id_ = 0;
+  video_id_ = GOOGLE_LONGLONG(0);
   clear_has_video_id();
 }
- ::google::protobuf::int32 MsgVideo::video_id() const {
+ ::google::protobuf::int64 MsgVideo::video_id() const {
   // @@protoc_insertion_point(field_get:message.MsgVideo.video_id)
   return video_id_;
 }
- void MsgVideo::set_video_id(::google::protobuf::int32 value) {
+ void MsgVideo::set_video_id(::google::protobuf::int64 value) {
   set_has_video_id();
   video_id_ = value;
   // @@protoc_insertion_point(field_set:message.MsgVideo.video_id)
@@ -2270,7 +2261,7 @@ MsgMovieExternal::MsgMovieExternal(const MsgMovieExternal& from)
 void MsgMovieExternal::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  movie_id_ = 0;
+  movie_id_ = GOOGLE_LONGLONG(0);
   describe_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   type_ = 0;
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -2315,27 +2306,16 @@ MsgMovieExternal* MsgMovieExternal::New(::google::protobuf::Arena* arena) const 
 }
 
 void MsgMovieExternal::Clear() {
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<MsgMovieExternal*>(16)->f)
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
   if (_has_bits_[0 / 32] & 15) {
-    ZR_(movie_id_, type_);
+    movie_id_ = GOOGLE_LONGLONG(0);
     if (has_describe()) {
       describe_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
+    type_ = 0;
     if (has_name()) {
       name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
   }
-
-#undef ZR_HELPER_
-#undef ZR_
-
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -2352,11 +2332,11 @@ bool MsgMovieExternal::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 movie_id = 1;
+      // required int64 movie_id = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &movie_id_)));
           set_has_movie_id();
         } else {
@@ -2445,9 +2425,9 @@ failure:
 void MsgMovieExternal::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:message.MsgMovieExternal)
-  // required int32 movie_id = 1;
+  // required int64 movie_id = 1;
   if (has_movie_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->movie_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->movie_id(), output);
   }
 
   // required string describe = 2;
@@ -2486,9 +2466,9 @@ void MsgMovieExternal::SerializeWithCachedSizes(
 ::google::protobuf::uint8* MsgMovieExternal::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:message.MsgMovieExternal)
-  // required int32 movie_id = 1;
+  // required int64 movie_id = 1;
   if (has_movie_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->movie_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->movie_id(), target);
   }
 
   // required string describe = 2;
@@ -2531,9 +2511,9 @@ int MsgMovieExternal::RequiredFieldsByteSizeFallback() const {
   int total_size = 0;
 
   if (has_movie_id()) {
-    // required int32 movie_id = 1;
+    // required int64 movie_id = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->movie_id());
   }
 
@@ -2563,9 +2543,9 @@ int MsgMovieExternal::ByteSize() const {
   int total_size = 0;
 
   if (((_has_bits_[0] & 0x0000000f) ^ 0x0000000f) == 0) {  // All required fields are present.
-    // required int32 movie_id = 1;
+    // required int64 movie_id = 1;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->movie_id());
 
     // required string describe = 2;
@@ -2674,7 +2654,7 @@ void MsgMovieExternal::InternalSwap(MsgMovieExternal* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // MsgMovieExternal
 
-// required int32 movie_id = 1;
+// required int64 movie_id = 1;
  bool MsgMovieExternal::has_movie_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -2685,14 +2665,14 @@ void MsgMovieExternal::InternalSwap(MsgMovieExternal* other) {
   _has_bits_[0] &= ~0x00000001u;
 }
  void MsgMovieExternal::clear_movie_id() {
-  movie_id_ = 0;
+  movie_id_ = GOOGLE_LONGLONG(0);
   clear_has_movie_id();
 }
- ::google::protobuf::int32 MsgMovieExternal::movie_id() const {
+ ::google::protobuf::int64 MsgMovieExternal::movie_id() const {
   // @@protoc_insertion_point(field_get:message.MsgMovieExternal.movie_id)
   return movie_id_;
 }
- void MsgMovieExternal::set_movie_id(::google::protobuf::int32 value) {
+ void MsgMovieExternal::set_movie_id(::google::protobuf::int64 value) {
   set_has_movie_id();
   movie_id_ = value;
   // @@protoc_insertion_point(field_set:message.MsgMovieExternal.movie_id)
@@ -3219,7 +3199,7 @@ void MsgMovieThemeExternal::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   describe_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   type_ = 1;
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -3269,7 +3249,7 @@ void MsgMovieThemeExternal::Clear() {
       describe_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
     type_ = 1;
-    id_ = 0;
+    id_ = GOOGLE_LONGLONG(0);
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3340,12 +3320,12 @@ bool MsgMovieThemeExternal::MergePartialFromCodedStream(
         break;
       }
 
-      // required int32 id = 4;
+      // required int64 id = 4;
       case 4: {
         if (tag == 32) {
          parse_id:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &id_)));
           set_has_id();
         } else {
@@ -3406,9 +3386,9 @@ void MsgMovieThemeExternal::SerializeWithCachedSizes(
       3, this->type(), output);
   }
 
-  // required int32 id = 4;
+  // required int64 id = 4;
   if (has_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->id(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3449,9 +3429,9 @@ void MsgMovieThemeExternal::SerializeWithCachedSizes(
       3, this->type(), target);
   }
 
-  // required int32 id = 4;
+  // required int64 id = 4;
   if (has_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->id(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3486,9 +3466,9 @@ int MsgMovieThemeExternal::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_id()) {
-    // required int32 id = 4;
+    // required int64 id = 4;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
   }
 
@@ -3512,9 +3492,9 @@ int MsgMovieThemeExternal::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
 
-    // required int32 id = 4;
+    // required int64 id = 4;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
 
   } else {
@@ -3740,7 +3720,7 @@ void MsgMovieThemeExternal::InternalSwap(MsgMovieThemeExternal* other) {
   // @@protoc_insertion_point(field_set:message.MsgMovieThemeExternal.type)
 }
 
-// required int32 id = 4;
+// required int64 id = 4;
  bool MsgMovieThemeExternal::has_id() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -3751,14 +3731,14 @@ void MsgMovieThemeExternal::InternalSwap(MsgMovieThemeExternal* other) {
   _has_bits_[0] &= ~0x00000008u;
 }
  void MsgMovieThemeExternal::clear_id() {
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
   clear_has_id();
 }
- ::google::protobuf::int32 MsgMovieThemeExternal::id() const {
+ ::google::protobuf::int64 MsgMovieThemeExternal::id() const {
   // @@protoc_insertion_point(field_get:message.MsgMovieThemeExternal.id)
   return id_;
 }
- void MsgMovieThemeExternal::set_id(::google::protobuf::int32 value) {
+ void MsgMovieThemeExternal::set_id(::google::protobuf::int64 value) {
   set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:message.MsgMovieThemeExternal.id)
@@ -3771,6 +3751,7 @@ void MsgMovieThemeExternal::InternalSwap(MsgMovieThemeExternal* other) {
 #ifndef _MSC_VER
 const int MsgMovieTheme::kThemeExternalFieldNumber;
 const int MsgMovieTheme::kMoviesExternalsFieldNumber;
+const int MsgMovieTheme::kMovieRattingFieldNumber;
 #endif  // !_MSC_VER
 
 MsgMovieTheme::MsgMovieTheme()
@@ -3838,6 +3819,7 @@ void MsgMovieTheme::Clear() {
     if (theme_external_ != NULL) theme_external_->::message::MsgMovieThemeExternal::Clear();
   }
   movies_externals_.Clear();
+  movie_ratting_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -3876,6 +3858,20 @@ bool MsgMovieTheme::MergePartialFromCodedStream(
           goto handle_unusual;
         }
         if (input->ExpectTag(18)) goto parse_movies_externals;
+        if (input->ExpectTag(26)) goto parse_movie_ratting;
+        break;
+      }
+
+      // repeated .message.MsgIntPair movie_ratting = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_movie_ratting:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_movie_ratting()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_movie_ratting;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -3917,6 +3913,12 @@ void MsgMovieTheme::SerializeWithCachedSizes(
       2, this->movies_externals(i), output);
   }
 
+  // repeated .message.MsgIntPair movie_ratting = 3;
+  for (unsigned int i = 0, n = this->movie_ratting_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, this->movie_ratting(i), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -3939,6 +3941,13 @@ void MsgMovieTheme::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         2, this->movies_externals(i), target);
+  }
+
+  // repeated .message.MsgIntPair movie_ratting = 3;
+  for (unsigned int i = 0, n = this->movie_ratting_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        3, this->movie_ratting(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3964,6 +3973,14 @@ int MsgMovieTheme::ByteSize() const {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         this->movies_externals(i));
+  }
+
+  // repeated .message.MsgIntPair movie_ratting = 3;
+  total_size += 1 * this->movie_ratting_size();
+  for (int i = 0; i < this->movie_ratting_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->movie_ratting(i));
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3992,6 +4009,7 @@ void MsgMovieTheme::MergeFrom(const ::google::protobuf::Message& from) {
 void MsgMovieTheme::MergeFrom(const MsgMovieTheme& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   movies_externals_.MergeFrom(from.movies_externals_);
+  movie_ratting_.MergeFrom(from.movie_ratting_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_theme_external()) {
       mutable_theme_external()->::message::MsgMovieThemeExternal::MergeFrom(from.theme_external());
@@ -4021,6 +4039,7 @@ bool MsgMovieTheme::IsInitialized() const {
     if (!this->theme_external_->IsInitialized()) return false;
   }
   if (!::google::protobuf::internal::AllAreInitialized(this->movies_externals())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->movie_ratting())) return false;
   return true;
 }
 
@@ -4031,6 +4050,7 @@ void MsgMovieTheme::Swap(MsgMovieTheme* other) {
 void MsgMovieTheme::InternalSwap(MsgMovieTheme* other) {
   std::swap(theme_external_, other->theme_external_);
   movies_externals_.UnsafeArenaSwap(&other->movies_externals_);
+  movie_ratting_.UnsafeArenaSwap(&other->movie_ratting_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -4118,6 +4138,36 @@ MsgMovieTheme::movies_externals() const {
 MsgMovieTheme::mutable_movies_externals() {
   // @@protoc_insertion_point(field_mutable_list:message.MsgMovieTheme.movies_externals)
   return &movies_externals_;
+}
+
+// repeated .message.MsgIntPair movie_ratting = 3;
+ int MsgMovieTheme::movie_ratting_size() const {
+  return movie_ratting_.size();
+}
+ void MsgMovieTheme::clear_movie_ratting() {
+  movie_ratting_.Clear();
+}
+ const ::message::MsgIntPair& MsgMovieTheme::movie_ratting(int index) const {
+  // @@protoc_insertion_point(field_get:message.MsgMovieTheme.movie_ratting)
+  return movie_ratting_.Get(index);
+}
+ ::message::MsgIntPair* MsgMovieTheme::mutable_movie_ratting(int index) {
+  // @@protoc_insertion_point(field_mutable:message.MsgMovieTheme.movie_ratting)
+  return movie_ratting_.Mutable(index);
+}
+ ::message::MsgIntPair* MsgMovieTheme::add_movie_ratting() {
+  // @@protoc_insertion_point(field_add:message.MsgMovieTheme.movie_ratting)
+  return movie_ratting_.Add();
+}
+ const ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >&
+MsgMovieTheme::movie_ratting() const {
+  // @@protoc_insertion_point(field_list:message.MsgMovieTheme.movie_ratting)
+  return movie_ratting_;
+}
+ ::google::protobuf::RepeatedPtrField< ::message::MsgIntPair >*
+MsgMovieTheme::mutable_movie_ratting() {
+  // @@protoc_insertion_point(field_mutable_list:message.MsgMovieTheme.movie_ratting)
+  return &movie_ratting_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

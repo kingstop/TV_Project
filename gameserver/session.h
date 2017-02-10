@@ -13,6 +13,11 @@ public:
 	void prasePBDefault(google::protobuf::Message* p);	
 	static void registerPBCall();
 public:
+	void parseMsgC2SReqMovieThemes(google::protobuf::Message* p);
+	void parseMsgC2SReqThemeInfo(google::protobuf::Message* p);
+	void parseMsgC2SReqMovieInfo(google::protobuf::Message* p);
+	void parseMsgC2SReqPlayMovie(google::protobuf::Message* p);
+	void parseMsgC2SReqAddMovieToFavourite(google::protobuf::Message* p);
 public:
 	void parseMsgCharacterIDDB2GSACK(message::MsgCharacterIDDB2GSACK* msg);
 	void parseCreateCharacter();

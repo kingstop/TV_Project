@@ -11,9 +11,33 @@ Character::Character()
 	entry_theme_external.set_name("");
 	entry_theme_external.set_type(message::MovieType_MyFavourite);
 	_collection_theme.mutable_theme_external()->CopyFrom(entry_theme_external);	
+
+	message::MsgMovieThemeExternal* external = _recently_theme.mutable_theme_external();
+	external->set_id(1);
+	entry_theme_external.set_describe("");
+	entry_theme_external.set_name("");
+	entry_theme_external.set_type(message::MovieType_RecentlyPlay);
+
 }
 
+const message::MsgMovieTheme* Character::GetFavourite()
+{
+	return &_collection_theme;
+}
+const message::MsgMovieTheme* Character::GetRecentlyPlay()
+{
+	return &_recently_theme;
+}
 
+const std::list<s64>* Character::GetFavouriteList()
+{
+	return &_collection_movie;
+}
+
+const std::map<s64, message::MsgWatchRecordInfo>* Character::getRecentlyWatch()
+{
+	return &_watch_records;
+}
 
 Character::~Character()
 {
@@ -111,19 +135,20 @@ void Character::SendClienInit(Session* s)
 		msg.set_config_video_path("");
 		msg.set_vip(_vip_level);
 		msg.set_resource_path("");
-		const std::map<int, int>* map = gMovieManager.getGridTheme();
-		std::map<int, int>::const_iterator it_grid = map->begin();
+		const std::map<s64, s64>* map = gMovieManager.getGridTheme();
+		std::map<s64, s64>::const_iterator it_grid = map->begin();
 		for (; it_grid != map->end(); ++it_grid)
 		{
 			msg.add_gird_theme()->set_number_1(it_grid->first);
 			msg.add_gird_theme()->set_number_2(it_grid->second);
 		}
 
-		std::map<int, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
+		std::map<s64, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
 		for (; it != _watch_records.end(); ++it)
 		{
 			msg.add_watch_record()->CopyFrom(it->second);
 		}
+		
 		s->sendPBMessage(&msg);
 	}
 
@@ -136,7 +161,7 @@ void Character::Save()
 	char sz_sql[40960];
 	char temp_sql[512];
 	std::string watch_str;
-	std::map<int, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
+	std::map<s64, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
 	for (int i = 0; it != _watch_records.end(); ++ it, i ++)
 	{
 		if (i != 0)
@@ -155,7 +180,7 @@ void Character::Save()
 	std::string sql_collection;
 	sprintf(temp_sql, "delete from `character_movie_collection` where `character_id` =%lu", _id);
 	sql_collection += temp_sql;
-	std::list<int>::iterator it_collection = _collection_movie.begin();
+	std::list<s64>::iterator it_collection = _collection_movie.begin();
 	for (int i = 0; it_collection != _collection_movie.end(); ++it_collection, i ++)
 	{
 		if (i != 0)

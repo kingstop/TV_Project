@@ -76,10 +76,10 @@ void MovieManager::Load(DBQuery* p)
 			DBRow& row = sResult[i];
 			int movie_id = row["movie_id"];
 			int video_id = row["video_id"];
-			std::map<int, std::list<int>>::iterator it = _movie_videos.find(movie_id);
+			std::map<s64, std::list<s64>>::iterator it = _movie_videos.find(movie_id);
 			if (it == _movie_videos.end())
 			{
-				std::list<int> list_entry;
+				std::list<s64> list_entry;
 				_movie_videos[movie_id] = list_entry;
 			}
 			_movie_videos[movie_id].push_back(video_id);
@@ -96,13 +96,13 @@ void MovieManager::Load(DBQuery* p)
 			int movie_id = row["movie_id"];
 			int theme_id = row["theme_id"];
 			int ratting = row["ratting"];
-			std::map<int, std::list<std::pair<int, int>>>::iterator it = _theme_movie_ids.find(theme_id);
+			std::map<s64, std::list<std::pair<s64, s64>>>::iterator it = _theme_movie_ids.find(theme_id);
 			if (it == _theme_movie_ids.end())
 			{
-				std::list<std::pair<int, int>> list_entry;
+				std::list<std::pair<s64, s64>> list_entry;
 				_theme_movie_ids[theme_id] = list_entry;
 			}
-			std::pair<int, int> entry;
+			std::pair<s64, s64> entry;
 			entry.first = theme_id;
 			entry.second = ratting;
 			_theme_movie_ids[theme_id].push_back(entry);
@@ -117,21 +117,21 @@ void MovieManager::Load(DBQuery* p)
 		{
 			DBRow& row = sResult[i];
 			int grid_id = row["grid_id"];
-			int theme_id = row["theme_id"];
+			s64 theme_id = row["theme_id"];
 			_grid_theme[grid_id] = theme_id;
 		}
 	}
 }
 
 
-const std::map<int, message::MsgVideo>* MovieManager::getVideos()
+const std::map<s64, message::MsgVideo>* MovieManager::getVideos()
 {
 	return &_videos;
 }
-const message::MsgVideo* MovieManager::getVideo(int id)
+const message::MsgVideo* MovieManager::getVideo(s64 id)
 {
 	message::MsgVideo* video = NULL;
-	std::map<int, message::MsgVideo>::iterator it = _videos.find(id);
+	std::map<s64, message::MsgVideo>::iterator it = _videos.find(id);
 	if (it != _videos.end())
 	{
 		video = &(it->second);
@@ -140,42 +140,42 @@ const message::MsgVideo* MovieManager::getVideo(int id)
 }
 
 
-const std::map<int, message::MsgMovieExternal>* MovieManager::getMovies()
+const std::map<s64, message::MsgMovieExternal>* MovieManager::getMovies()
 {
 	return &_movies;
 }
-const message::MsgMovieExternal* MovieManager::getMovie(int id)
+const message::MsgMovieExternal* MovieManager::getMovie(s64 id)
 {
 	message::MsgMovieExternal* entry = NULL;
-	std::map<int, message::MsgMovieExternal>::iterator it = _movies.find(id);
+	std::map<s64, message::MsgMovieExternal>::iterator it = _movies.find(id);
 	if (it != _movies.end())
 	{
 		entry = &(it->second);
 	}
 	return entry;
 }
-const std::map<int, message::MsgMovieThemeExternal>* MovieManager::getThemes()
+const std::map<s64, message::MsgMovieThemeExternal>* MovieManager::getThemes()
 {
 	return &_themes;
 }
-const message::MsgMovieThemeExternal* MovieManager::getTheme(int id)
+const message::MsgMovieThemeExternal* MovieManager::getTheme(s64 id)
 {
 	message::MsgMovieThemeExternal* entry = NULL;
-	std::map<int, message::MsgMovieThemeExternal>::iterator it = _themes.find(id);
+	std::map<s64, message::MsgMovieThemeExternal>::iterator it = _themes.find(id);
 	if (it != _themes.end())
 	{
 		entry = &(it->second);
 	}
 	return entry;
 }
-const std::map<int, std::list<int>>* MovieManager::getMovieVideos()
+const std::map<s64, std::list<s64>>* MovieManager::getMovieVideos()
 {
 	return &_movie_videos;
 }
-const std::list<int>* MovieManager::getMovieVideos(int id)
+const std::list<s64>* MovieManager::getMovieVideos(s64 id)
 {
-	std::list<int>* entry = NULL;
-	std::map<int, std::list<int>>::iterator it = _movie_videos.find(id);
+	std::list<s64>* entry = NULL;
+	std::map<s64, std::list<s64>>::iterator it = _movie_videos.find(id);
 	if (it != _movie_videos.end())
 	{
 		entry = &(it->second);
@@ -183,14 +183,14 @@ const std::list<int>* MovieManager::getMovieVideos(int id)
 	return entry;
 
 }
-const std::map<int, std::list<std::pair<int, int>>>* MovieManager::getThemeMovies()
+const std::map<s64, std::list<std::pair<s64, s64>>>* MovieManager::getThemeMovies()
 {
 	return &_theme_movie_ids;
 }
-const std::list<std::pair<int, int>>* MovieManager::getThemeMovies(int id)
+const std::list<std::pair<s64, s64>>* MovieManager::getThemeMovies(s64 id)
 {
-	std::list<std::pair<int, int>>* entry_list = NULL;
-	std::map<int, std::list<std::pair<int, int>>>::iterator it = _theme_movie_ids.find(id);
+	std::list<std::pair<s64, s64>>* entry_list = NULL;
+	std::map<s64, std::list<std::pair<s64, s64>>>::iterator it = _theme_movie_ids.find(id);
 	if (it != _theme_movie_ids.end())
 	{
 		entry_list = &(it->second);
@@ -198,7 +198,7 @@ const std::list<std::pair<int, int>>* MovieManager::getThemeMovies(int id)
 	return entry_list;
 }
 
-const std::map<int, int>* MovieManager::getGridTheme()
+const std::map<s64, s64>* MovieManager::getGridTheme()
 {
 	return &_grid_theme;
 }

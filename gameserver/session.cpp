@@ -28,6 +28,16 @@ void Session::prasePBDefault(google::protobuf::Message* p)
 //这里负责注册消息
 void Session::registerPBCall()
 {
+	registerCBFun(PROTOCO_NAME(message::MsgC2SReqMovieThemes), &Session::parseMsgC2SReqMovieThemes);
+	registerCBFun(PROTOCO_NAME(message::MsgC2SReqThemeInfo), &Session::parseMsgC2SReqThemeInfo);
+	registerCBFun(PROTOCO_NAME(message::MsgC2SReqMovieInfo), &Session::parseMsgC2SReqMovieInfo);
+	registerCBFun(PROTOCO_NAME(message::MsgC2SReqPlayMovie), &Session::parseMsgC2SReqPlayMovie);
+	registerCBFun(PROTOCO_NAME(message::MsgC2SReqAddMovieToFavourite), &Session::parseMsgC2SReqAddMovieToFavourite);
+	//parseMsgC2SReqAddMovieToFavourite
+	//parseMsgC2SReqPlayMovie
+
+	
+
 
 
 	//parseCmdReqClearDailyRankList
@@ -155,6 +165,125 @@ void Session::sendPBMessage(google::protobuf::Message* p)
     {
 
     }
+}
+
+void Session::parseMsgC2SReqAddMovieToFavourite(google::protobuf::Message* p)
+{
+	message::MsgC2SReqAddMovieToFavourite* msg = (message::MsgC2SReqAddMovieToFavourite*)p;
+}
+
+void Session::parseMsgC2SReqPlayMovie(google::protobuf::Message* p)
+{
+	message::MsgC2SReqPlayMovie* msg = (message::MsgC2SReqPlayMovie*)p;
+}
+
+void Session::parseMsgC2SReqMovieThemes(google::protobuf::Message* p)
+{
+	message::MsgC2SReqMovieThemes* msg = (message::MsgC2SReqMovieThemes*)p;
+	message::MsgS2CMovieThemesACK msgACK;
+	const std::map<s64, message::MsgMovieThemeExternal>* themes = gMovieManager.getThemes();
+	std::map<s64, message::MsgMovieThemeExternal>::const_iterator it = themes->begin();
+	for (; it != themes->end(); ++ it)
+	{
+		msgACK.add_infos()->CopyFrom(it->second);
+	}
+	if (_character != NULL)
+	{
+		msgACK.add_infos()->CopyFrom(*_character->GetFavourite());
+		msgACK.add_infos()->CopyFrom(*_character->GetRecentlyPlay());
+	}
+	
+	sendPBMessage(&msgACK);
+	
+}
+void Session::parseMsgC2SReqThemeInfo(google::protobuf::Message* p)
+{
+	message::MsgC2SReqThemeInfo* msg = (message::MsgC2SReqThemeInfo*)p;
+
+	message::MsgS2CThemeInfoACK msgACK;
+	s64 theme_id = msg->theme_id();
+	message::MsgMovieTheme* info = msgACK.mutable_info();
+	message::MsgMovieThemeExternal* theme_external = NULL;
+	if (theme_id == 0)
+	{
+		info->mutable_theme_external()->CopyFrom(*_character->GetFavourite());
+		const std::list<s64>*  favourite_list = _character->GetFavouriteList();
+		std::list<s64>::const_iterator it = favourite_list->begin();
+		for (; it != favourite_list->end(); ++ it)
+		{
+			const message::MsgMovieExternal*  external = gMovieManager.getMovie(*it);
+			if (external != NULL)
+			{
+				info->add_movies_externals()->CopyFrom(*external);
+			}
+		}
+	}
+	else if(theme_id == 1)
+	{
+		info->mutable_theme_external()->CopyFrom(*_character->GetRecentlyPlay());
+		const std::map<s64, message::MsgWatchRecordInfo>*  watchs = _character->getRecentlyWatch();
+		std::map<s64, message::MsgWatchRecordInfo>::const_iterator it = watchs->begin();
+		for (; it != watchs->end(); ++ it)
+		{
+			const message::MsgWatchRecordInfo watch_info = it->second;
+			s64 movie_id = watch_info.movie_id();
+			
+			const message::MsgMovieExternal*  external = gMovieManager.getMovie(movie_id);
+			if (external != NULL)
+			{
+				info->add_movies_externals()->CopyFrom(*external);
+				message::MsgIntPair* entry_pair = info->add_movie_ratting();
+				entry_pair->set_number_1(movie_id);
+				entry_pair->set_number_2(watch_info.time());
+			}
+		}
+	}
+	else
+	{
+		const std::list<std::pair<s64, s64>>* movies = gMovieManager.getThemeMovies(theme_id);
+		std::list<std::pair<s64, s64>>::const_iterator it = movies->begin();
+		for (; it != movies->end(); ++ it)
+		{
+			std::pair<s64, s64> entry_pair = (*it);
+			s64 movie_id = entry_pair.first;
+			s64 ratting = entry_pair.second;
+			const message::MsgMovieExternal*  external = gMovieManager.getMovie(movie_id);
+			if (external != NULL)
+			{
+				info->add_movies_externals()->CopyFrom(*external);
+				message::MsgIntPair* entry_pair = info->add_movie_ratting();
+				entry_pair->set_number_1(movie_id);
+				entry_pair->set_number_2(ratting);
+			}
+
+		}
+	}
+	sendPBMessage(&msgACK);
+
+}
+void Session::parseMsgC2SReqMovieInfo(google::protobuf::Message* p)
+{
+	message::MsgC2SReqMovieInfo* msg = (message::MsgC2SReqMovieInfo*)p;
+	message::MsgS2CMovieInfoACK msgACK;
+	s64 movie_id = msg->movie_id();
+	const message::MsgMovieExternal* movie_external = gMovieManager.getMovie(movie_id);
+	if (movie_external != NULL)
+	{
+		message::MsgMovie* info = msgACK.mutable_info();
+		info->mutable_external()->CopyFrom(*movie_external);
+		const std::list<s64>* videos = gMovieManager.getMovieVideos(movie_id);
+		std::list<s64>::const_iterator it_videos = videos->begin();
+		for (; it_videos != videos->end(); ++ it_videos)
+		{
+			s64 video_id = (*it_videos);
+			const message::MsgVideo* entry_video = gMovieManager.getVideo(video_id);
+			if (entry_video != NULL)
+			{
+				info->add_videos()->CopyFrom(*entry_video);
+			}			
+		}
+	}
+	sendPBMessage(&msgACK);
 }
 
 void Session::parseMsgCharacterIDDB2GSACK(message::MsgCharacterIDDB2GSACK* msg)

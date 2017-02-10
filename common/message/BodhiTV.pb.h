@@ -26,6 +26,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "common.pb.h"
 // @@protoc_insertion_point(includes)
@@ -41,10 +42,34 @@ class MsgC2SReqMovieThemes;
 class MsgS2CMovieThemesACK;
 class MsgS2CClientInit;
 class MsgC2SReqThemeInfo;
-class MsgS2CMovieThemeInfoACK;
+class MsgS2CThemeInfoACK;
 class MsgC2SReqMovieInfo;
 class MsgS2CMovieInfoACK;
+class MsgC2SReqPlayMovie;
+class MsgS2CPlayMovieACK;
+class MsgC2SReqAddMovieToFavourite;
+class MsgS2CAddMovieToFavouriteACK;
 
+enum MsgError {
+  MsgError_NO = 0,
+  MsgError_FailedToPlayVideoNotFoundVideo = 1,
+  MsgError_FailedToPlayVideoRequiredVIP = 2
+};
+bool MsgError_IsValid(int value);
+const MsgError MsgError_MIN = MsgError_NO;
+const MsgError MsgError_MAX = MsgError_FailedToPlayVideoRequiredVIP;
+const int MsgError_ARRAYSIZE = MsgError_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* MsgError_descriptor();
+inline const ::std::string& MsgError_Name(MsgError value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    MsgError_descriptor(), value);
+}
+inline bool MsgError_Parse(
+    const ::std::string& name, MsgError* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<MsgError>(
+    MsgError_descriptor(), name, value);
+}
 // ===================================================================
 
 class MsgC2SReqMovieThemes : public ::google::protobuf::Message {
@@ -445,12 +470,12 @@ class MsgC2SReqThemeInfo : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required int32 Theme_id = 1;
+  // required int64 Theme_id = 1;
   bool has_theme_id() const;
   void clear_theme_id();
   static const int kThemeIdFieldNumber = 1;
-  ::google::protobuf::int32 theme_id() const;
-  void set_theme_id(::google::protobuf::int32 value);
+  ::google::protobuf::int64 theme_id() const;
+  void set_theme_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:message.MsgC2SReqThemeInfo)
  private:
@@ -460,7 +485,7 @@ class MsgC2SReqThemeInfo : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::int32 theme_id_;
+  ::google::protobuf::int64 theme_id_;
   friend void  protobuf_AddDesc_BodhiTV_2eproto();
   friend void protobuf_AssignDesc_BodhiTV_2eproto();
   friend void protobuf_ShutdownFile_BodhiTV_2eproto();
@@ -470,14 +495,14 @@ class MsgC2SReqThemeInfo : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class MsgS2CMovieThemeInfoACK : public ::google::protobuf::Message {
+class MsgS2CThemeInfoACK : public ::google::protobuf::Message {
  public:
-  MsgS2CMovieThemeInfoACK();
-  virtual ~MsgS2CMovieThemeInfoACK();
+  MsgS2CThemeInfoACK();
+  virtual ~MsgS2CThemeInfoACK();
 
-  MsgS2CMovieThemeInfoACK(const MsgS2CMovieThemeInfoACK& from);
+  MsgS2CThemeInfoACK(const MsgS2CThemeInfoACK& from);
 
-  inline MsgS2CMovieThemeInfoACK& operator=(const MsgS2CMovieThemeInfoACK& from) {
+  inline MsgS2CThemeInfoACK& operator=(const MsgS2CThemeInfoACK& from) {
     CopyFrom(from);
     return *this;
   }
@@ -491,19 +516,19 @@ class MsgS2CMovieThemeInfoACK : public ::google::protobuf::Message {
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgS2CMovieThemeInfoACK& default_instance();
+  static const MsgS2CThemeInfoACK& default_instance();
 
-  void Swap(MsgS2CMovieThemeInfoACK* other);
+  void Swap(MsgS2CThemeInfoACK* other);
 
   // implements Message ----------------------------------------------
 
-  inline MsgS2CMovieThemeInfoACK* New() const { return New(NULL); }
+  inline MsgS2CThemeInfoACK* New() const { return New(NULL); }
 
-  MsgS2CMovieThemeInfoACK* New(::google::protobuf::Arena* arena) const;
+  MsgS2CThemeInfoACK* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgS2CMovieThemeInfoACK& from);
-  void MergeFrom(const MsgS2CMovieThemeInfoACK& from);
+  void CopyFrom(const MsgS2CThemeInfoACK& from);
+  void MergeFrom(const MsgS2CThemeInfoACK& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -518,7 +543,7 @@ class MsgS2CMovieThemeInfoACK : public ::google::protobuf::Message {
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(MsgS2CMovieThemeInfoACK* other);
+  void InternalSwap(MsgS2CThemeInfoACK* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -543,7 +568,7 @@ class MsgS2CMovieThemeInfoACK : public ::google::protobuf::Message {
   ::message::MsgMovieTheme* release_info();
   void set_allocated_info(::message::MsgMovieTheme* info);
 
-  // @@protoc_insertion_point(class_scope:message.MsgS2CMovieThemeInfoACK)
+  // @@protoc_insertion_point(class_scope:message.MsgS2CThemeInfoACK)
  private:
   inline void set_has_info();
   inline void clear_has_info();
@@ -557,7 +582,7 @@ class MsgS2CMovieThemeInfoACK : public ::google::protobuf::Message {
   friend void protobuf_ShutdownFile_BodhiTV_2eproto();
 
   void InitAsDefaultInstance();
-  static MsgS2CMovieThemeInfoACK* default_instance_;
+  static MsgS2CThemeInfoACK* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -625,12 +650,12 @@ class MsgC2SReqMovieInfo : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required int32 movie_id = 1;
+  // required int64 movie_id = 1;
   bool has_movie_id() const;
   void clear_movie_id();
   static const int kMovieIdFieldNumber = 1;
-  ::google::protobuf::int32 movie_id() const;
-  void set_movie_id(::google::protobuf::int32 value);
+  ::google::protobuf::int64 movie_id() const;
+  void set_movie_id(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:message.MsgC2SReqMovieInfo)
  private:
@@ -640,7 +665,7 @@ class MsgC2SReqMovieInfo : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::int32 movie_id_;
+  ::google::protobuf::int64 movie_id_;
   friend void  protobuf_AddDesc_BodhiTV_2eproto();
   friend void protobuf_AssignDesc_BodhiTV_2eproto();
   friend void protobuf_ShutdownFile_BodhiTV_2eproto();
@@ -738,6 +763,411 @@ class MsgS2CMovieInfoACK : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static MsgS2CMovieInfoACK* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgC2SReqPlayMovie : public ::google::protobuf::Message {
+ public:
+  MsgC2SReqPlayMovie();
+  virtual ~MsgC2SReqPlayMovie();
+
+  MsgC2SReqPlayMovie(const MsgC2SReqPlayMovie& from);
+
+  inline MsgC2SReqPlayMovie& operator=(const MsgC2SReqPlayMovie& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgC2SReqPlayMovie& default_instance();
+
+  void Swap(MsgC2SReqPlayMovie* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgC2SReqPlayMovie* New() const { return New(NULL); }
+
+  MsgC2SReqPlayMovie* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgC2SReqPlayMovie& from);
+  void MergeFrom(const MsgC2SReqPlayMovie& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgC2SReqPlayMovie* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int64 Movie_id = 1;
+  bool has_movie_id() const;
+  void clear_movie_id();
+  static const int kMovieIdFieldNumber = 1;
+  ::google::protobuf::int64 movie_id() const;
+  void set_movie_id(::google::protobuf::int64 value);
+
+  // required int64 Video_id = 2;
+  bool has_video_id() const;
+  void clear_video_id();
+  static const int kVideoIdFieldNumber = 2;
+  ::google::protobuf::int64 video_id() const;
+  void set_video_id(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:message.MsgC2SReqPlayMovie)
+ private:
+  inline void set_has_movie_id();
+  inline void clear_has_movie_id();
+  inline void set_has_video_id();
+  inline void clear_has_video_id();
+
+  // helper for ByteSize()
+  int RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int64 movie_id_;
+  ::google::protobuf::int64 video_id_;
+  friend void  protobuf_AddDesc_BodhiTV_2eproto();
+  friend void protobuf_AssignDesc_BodhiTV_2eproto();
+  friend void protobuf_ShutdownFile_BodhiTV_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgC2SReqPlayMovie* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgS2CPlayMovieACK : public ::google::protobuf::Message {
+ public:
+  MsgS2CPlayMovieACK();
+  virtual ~MsgS2CPlayMovieACK();
+
+  MsgS2CPlayMovieACK(const MsgS2CPlayMovieACK& from);
+
+  inline MsgS2CPlayMovieACK& operator=(const MsgS2CPlayMovieACK& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgS2CPlayMovieACK& default_instance();
+
+  void Swap(MsgS2CPlayMovieACK* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgS2CPlayMovieACK* New() const { return New(NULL); }
+
+  MsgS2CPlayMovieACK* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgS2CPlayMovieACK& from);
+  void MergeFrom(const MsgS2CPlayMovieACK& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgS2CPlayMovieACK* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int64 Movie_id = 1;
+  bool has_movie_id() const;
+  void clear_movie_id();
+  static const int kMovieIdFieldNumber = 1;
+  ::google::protobuf::int64 movie_id() const;
+  void set_movie_id(::google::protobuf::int64 value);
+
+  // required int64 Video_id = 2;
+  bool has_video_id() const;
+  void clear_video_id();
+  static const int kVideoIdFieldNumber = 2;
+  ::google::protobuf::int64 video_id() const;
+  void set_video_id(::google::protobuf::int64 value);
+
+  // required .message.MsgError error = 3 [default = MsgError_NO];
+  bool has_error() const;
+  void clear_error();
+  static const int kErrorFieldNumber = 3;
+  ::message::MsgError error() const;
+  void set_error(::message::MsgError value);
+
+  // @@protoc_insertion_point(class_scope:message.MsgS2CPlayMovieACK)
+ private:
+  inline void set_has_movie_id();
+  inline void clear_has_movie_id();
+  inline void set_has_video_id();
+  inline void clear_has_video_id();
+  inline void set_has_error();
+  inline void clear_has_error();
+
+  // helper for ByteSize()
+  int RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int64 movie_id_;
+  ::google::protobuf::int64 video_id_;
+  int error_;
+  friend void  protobuf_AddDesc_BodhiTV_2eproto();
+  friend void protobuf_AssignDesc_BodhiTV_2eproto();
+  friend void protobuf_ShutdownFile_BodhiTV_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgS2CPlayMovieACK* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgC2SReqAddMovieToFavourite : public ::google::protobuf::Message {
+ public:
+  MsgC2SReqAddMovieToFavourite();
+  virtual ~MsgC2SReqAddMovieToFavourite();
+
+  MsgC2SReqAddMovieToFavourite(const MsgC2SReqAddMovieToFavourite& from);
+
+  inline MsgC2SReqAddMovieToFavourite& operator=(const MsgC2SReqAddMovieToFavourite& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgC2SReqAddMovieToFavourite& default_instance();
+
+  void Swap(MsgC2SReqAddMovieToFavourite* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgC2SReqAddMovieToFavourite* New() const { return New(NULL); }
+
+  MsgC2SReqAddMovieToFavourite* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgC2SReqAddMovieToFavourite& from);
+  void MergeFrom(const MsgC2SReqAddMovieToFavourite& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgC2SReqAddMovieToFavourite* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int64 Movie_id = 1;
+  bool has_movie_id() const;
+  void clear_movie_id();
+  static const int kMovieIdFieldNumber = 1;
+  ::google::protobuf::int64 movie_id() const;
+  void set_movie_id(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:message.MsgC2SReqAddMovieToFavourite)
+ private:
+  inline void set_has_movie_id();
+  inline void clear_has_movie_id();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int64 movie_id_;
+  friend void  protobuf_AddDesc_BodhiTV_2eproto();
+  friend void protobuf_AssignDesc_BodhiTV_2eproto();
+  friend void protobuf_ShutdownFile_BodhiTV_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgC2SReqAddMovieToFavourite* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgS2CAddMovieToFavouriteACK : public ::google::protobuf::Message {
+ public:
+  MsgS2CAddMovieToFavouriteACK();
+  virtual ~MsgS2CAddMovieToFavouriteACK();
+
+  MsgS2CAddMovieToFavouriteACK(const MsgS2CAddMovieToFavouriteACK& from);
+
+  inline MsgS2CAddMovieToFavouriteACK& operator=(const MsgS2CAddMovieToFavouriteACK& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgS2CAddMovieToFavouriteACK& default_instance();
+
+  void Swap(MsgS2CAddMovieToFavouriteACK* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgS2CAddMovieToFavouriteACK* New() const { return New(NULL); }
+
+  MsgS2CAddMovieToFavouriteACK* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgS2CAddMovieToFavouriteACK& from);
+  void MergeFrom(const MsgS2CAddMovieToFavouriteACK& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgS2CAddMovieToFavouriteACK* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int64 Movie_id = 1;
+  bool has_movie_id() const;
+  void clear_movie_id();
+  static const int kMovieIdFieldNumber = 1;
+  ::google::protobuf::int64 movie_id() const;
+  void set_movie_id(::google::protobuf::int64 value);
+
+  // required .message.MsgError error = 2 [default = MsgError_NO];
+  bool has_error() const;
+  void clear_error();
+  static const int kErrorFieldNumber = 2;
+  ::message::MsgError error() const;
+  void set_error(::message::MsgError value);
+
+  // @@protoc_insertion_point(class_scope:message.MsgS2CAddMovieToFavouriteACK)
+ private:
+  inline void set_has_movie_id();
+  inline void clear_has_movie_id();
+  inline void set_has_error();
+  inline void clear_has_error();
+
+  // helper for ByteSize()
+  int RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int64 movie_id_;
+  int error_;
+  friend void  protobuf_AddDesc_BodhiTV_2eproto();
+  friend void protobuf_AssignDesc_BodhiTV_2eproto();
+  friend void protobuf_ShutdownFile_BodhiTV_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgS2CAddMovieToFavouriteACK* default_instance_;
 };
 // ===================================================================
 
@@ -1032,7 +1462,7 @@ MsgS2CClientInit::mutable_gird_theme() {
 
 // MsgC2SReqThemeInfo
 
-// required int32 Theme_id = 1;
+// required int64 Theme_id = 1;
 inline bool MsgC2SReqThemeInfo::has_theme_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1043,14 +1473,14 @@ inline void MsgC2SReqThemeInfo::clear_has_theme_id() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void MsgC2SReqThemeInfo::clear_theme_id() {
-  theme_id_ = 0;
+  theme_id_ = GOOGLE_LONGLONG(0);
   clear_has_theme_id();
 }
-inline ::google::protobuf::int32 MsgC2SReqThemeInfo::theme_id() const {
+inline ::google::protobuf::int64 MsgC2SReqThemeInfo::theme_id() const {
   // @@protoc_insertion_point(field_get:message.MsgC2SReqThemeInfo.Theme_id)
   return theme_id_;
 }
-inline void MsgC2SReqThemeInfo::set_theme_id(::google::protobuf::int32 value) {
+inline void MsgC2SReqThemeInfo::set_theme_id(::google::protobuf::int64 value) {
   set_has_theme_id();
   theme_id_ = value;
   // @@protoc_insertion_point(field_set:message.MsgC2SReqThemeInfo.Theme_id)
@@ -1058,41 +1488,41 @@ inline void MsgC2SReqThemeInfo::set_theme_id(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
-// MsgS2CMovieThemeInfoACK
+// MsgS2CThemeInfoACK
 
 // required .message.MsgMovieTheme info = 1;
-inline bool MsgS2CMovieThemeInfoACK::has_info() const {
+inline bool MsgS2CThemeInfoACK::has_info() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void MsgS2CMovieThemeInfoACK::set_has_info() {
+inline void MsgS2CThemeInfoACK::set_has_info() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void MsgS2CMovieThemeInfoACK::clear_has_info() {
+inline void MsgS2CThemeInfoACK::clear_has_info() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void MsgS2CMovieThemeInfoACK::clear_info() {
+inline void MsgS2CThemeInfoACK::clear_info() {
   if (info_ != NULL) info_->::message::MsgMovieTheme::Clear();
   clear_has_info();
 }
-inline const ::message::MsgMovieTheme& MsgS2CMovieThemeInfoACK::info() const {
-  // @@protoc_insertion_point(field_get:message.MsgS2CMovieThemeInfoACK.info)
+inline const ::message::MsgMovieTheme& MsgS2CThemeInfoACK::info() const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CThemeInfoACK.info)
   return info_ != NULL ? *info_ : *default_instance_->info_;
 }
-inline ::message::MsgMovieTheme* MsgS2CMovieThemeInfoACK::mutable_info() {
+inline ::message::MsgMovieTheme* MsgS2CThemeInfoACK::mutable_info() {
   set_has_info();
   if (info_ == NULL) {
     info_ = new ::message::MsgMovieTheme;
   }
-  // @@protoc_insertion_point(field_mutable:message.MsgS2CMovieThemeInfoACK.info)
+  // @@protoc_insertion_point(field_mutable:message.MsgS2CThemeInfoACK.info)
   return info_;
 }
-inline ::message::MsgMovieTheme* MsgS2CMovieThemeInfoACK::release_info() {
+inline ::message::MsgMovieTheme* MsgS2CThemeInfoACK::release_info() {
   clear_has_info();
   ::message::MsgMovieTheme* temp = info_;
   info_ = NULL;
   return temp;
 }
-inline void MsgS2CMovieThemeInfoACK::set_allocated_info(::message::MsgMovieTheme* info) {
+inline void MsgS2CThemeInfoACK::set_allocated_info(::message::MsgMovieTheme* info) {
   delete info_;
   info_ = info;
   if (info) {
@@ -1100,14 +1530,14 @@ inline void MsgS2CMovieThemeInfoACK::set_allocated_info(::message::MsgMovieTheme
   } else {
     clear_has_info();
   }
-  // @@protoc_insertion_point(field_set_allocated:message.MsgS2CMovieThemeInfoACK.info)
+  // @@protoc_insertion_point(field_set_allocated:message.MsgS2CThemeInfoACK.info)
 }
 
 // -------------------------------------------------------------------
 
 // MsgC2SReqMovieInfo
 
-// required int32 movie_id = 1;
+// required int64 movie_id = 1;
 inline bool MsgC2SReqMovieInfo::has_movie_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1118,14 +1548,14 @@ inline void MsgC2SReqMovieInfo::clear_has_movie_id() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void MsgC2SReqMovieInfo::clear_movie_id() {
-  movie_id_ = 0;
+  movie_id_ = GOOGLE_LONGLONG(0);
   clear_has_movie_id();
 }
-inline ::google::protobuf::int32 MsgC2SReqMovieInfo::movie_id() const {
+inline ::google::protobuf::int64 MsgC2SReqMovieInfo::movie_id() const {
   // @@protoc_insertion_point(field_get:message.MsgC2SReqMovieInfo.movie_id)
   return movie_id_;
 }
-inline void MsgC2SReqMovieInfo::set_movie_id(::google::protobuf::int32 value) {
+inline void MsgC2SReqMovieInfo::set_movie_id(::google::protobuf::int64 value) {
   set_has_movie_id();
   movie_id_ = value;
   // @@protoc_insertion_point(field_set:message.MsgC2SReqMovieInfo.movie_id)
@@ -1178,11 +1608,235 @@ inline void MsgS2CMovieInfoACK::set_allocated_info(::message::MsgMovie* info) {
   // @@protoc_insertion_point(field_set_allocated:message.MsgS2CMovieInfoACK.info)
 }
 
+// -------------------------------------------------------------------
+
+// MsgC2SReqPlayMovie
+
+// required int64 Movie_id = 1;
+inline bool MsgC2SReqPlayMovie::has_movie_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MsgC2SReqPlayMovie::set_has_movie_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MsgC2SReqPlayMovie::clear_has_movie_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MsgC2SReqPlayMovie::clear_movie_id() {
+  movie_id_ = GOOGLE_LONGLONG(0);
+  clear_has_movie_id();
+}
+inline ::google::protobuf::int64 MsgC2SReqPlayMovie::movie_id() const {
+  // @@protoc_insertion_point(field_get:message.MsgC2SReqPlayMovie.Movie_id)
+  return movie_id_;
+}
+inline void MsgC2SReqPlayMovie::set_movie_id(::google::protobuf::int64 value) {
+  set_has_movie_id();
+  movie_id_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgC2SReqPlayMovie.Movie_id)
+}
+
+// required int64 Video_id = 2;
+inline bool MsgC2SReqPlayMovie::has_video_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void MsgC2SReqPlayMovie::set_has_video_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void MsgC2SReqPlayMovie::clear_has_video_id() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void MsgC2SReqPlayMovie::clear_video_id() {
+  video_id_ = GOOGLE_LONGLONG(0);
+  clear_has_video_id();
+}
+inline ::google::protobuf::int64 MsgC2SReqPlayMovie::video_id() const {
+  // @@protoc_insertion_point(field_get:message.MsgC2SReqPlayMovie.Video_id)
+  return video_id_;
+}
+inline void MsgC2SReqPlayMovie::set_video_id(::google::protobuf::int64 value) {
+  set_has_video_id();
+  video_id_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgC2SReqPlayMovie.Video_id)
+}
+
+// -------------------------------------------------------------------
+
+// MsgS2CPlayMovieACK
+
+// required int64 Movie_id = 1;
+inline bool MsgS2CPlayMovieACK::has_movie_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MsgS2CPlayMovieACK::set_has_movie_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MsgS2CPlayMovieACK::clear_has_movie_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MsgS2CPlayMovieACK::clear_movie_id() {
+  movie_id_ = GOOGLE_LONGLONG(0);
+  clear_has_movie_id();
+}
+inline ::google::protobuf::int64 MsgS2CPlayMovieACK::movie_id() const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CPlayMovieACK.Movie_id)
+  return movie_id_;
+}
+inline void MsgS2CPlayMovieACK::set_movie_id(::google::protobuf::int64 value) {
+  set_has_movie_id();
+  movie_id_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgS2CPlayMovieACK.Movie_id)
+}
+
+// required int64 Video_id = 2;
+inline bool MsgS2CPlayMovieACK::has_video_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void MsgS2CPlayMovieACK::set_has_video_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void MsgS2CPlayMovieACK::clear_has_video_id() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void MsgS2CPlayMovieACK::clear_video_id() {
+  video_id_ = GOOGLE_LONGLONG(0);
+  clear_has_video_id();
+}
+inline ::google::protobuf::int64 MsgS2CPlayMovieACK::video_id() const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CPlayMovieACK.Video_id)
+  return video_id_;
+}
+inline void MsgS2CPlayMovieACK::set_video_id(::google::protobuf::int64 value) {
+  set_has_video_id();
+  video_id_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgS2CPlayMovieACK.Video_id)
+}
+
+// required .message.MsgError error = 3 [default = MsgError_NO];
+inline bool MsgS2CPlayMovieACK::has_error() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void MsgS2CPlayMovieACK::set_has_error() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void MsgS2CPlayMovieACK::clear_has_error() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void MsgS2CPlayMovieACK::clear_error() {
+  error_ = 0;
+  clear_has_error();
+}
+inline ::message::MsgError MsgS2CPlayMovieACK::error() const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CPlayMovieACK.error)
+  return static_cast< ::message::MsgError >(error_);
+}
+inline void MsgS2CPlayMovieACK::set_error(::message::MsgError value) {
+  assert(::message::MsgError_IsValid(value));
+  set_has_error();
+  error_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgS2CPlayMovieACK.error)
+}
+
+// -------------------------------------------------------------------
+
+// MsgC2SReqAddMovieToFavourite
+
+// required int64 Movie_id = 1;
+inline bool MsgC2SReqAddMovieToFavourite::has_movie_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MsgC2SReqAddMovieToFavourite::set_has_movie_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MsgC2SReqAddMovieToFavourite::clear_has_movie_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MsgC2SReqAddMovieToFavourite::clear_movie_id() {
+  movie_id_ = GOOGLE_LONGLONG(0);
+  clear_has_movie_id();
+}
+inline ::google::protobuf::int64 MsgC2SReqAddMovieToFavourite::movie_id() const {
+  // @@protoc_insertion_point(field_get:message.MsgC2SReqAddMovieToFavourite.Movie_id)
+  return movie_id_;
+}
+inline void MsgC2SReqAddMovieToFavourite::set_movie_id(::google::protobuf::int64 value) {
+  set_has_movie_id();
+  movie_id_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgC2SReqAddMovieToFavourite.Movie_id)
+}
+
+// -------------------------------------------------------------------
+
+// MsgS2CAddMovieToFavouriteACK
+
+// required int64 Movie_id = 1;
+inline bool MsgS2CAddMovieToFavouriteACK::has_movie_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void MsgS2CAddMovieToFavouriteACK::set_has_movie_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void MsgS2CAddMovieToFavouriteACK::clear_has_movie_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void MsgS2CAddMovieToFavouriteACK::clear_movie_id() {
+  movie_id_ = GOOGLE_LONGLONG(0);
+  clear_has_movie_id();
+}
+inline ::google::protobuf::int64 MsgS2CAddMovieToFavouriteACK::movie_id() const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CAddMovieToFavouriteACK.Movie_id)
+  return movie_id_;
+}
+inline void MsgS2CAddMovieToFavouriteACK::set_movie_id(::google::protobuf::int64 value) {
+  set_has_movie_id();
+  movie_id_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgS2CAddMovieToFavouriteACK.Movie_id)
+}
+
+// required .message.MsgError error = 2 [default = MsgError_NO];
+inline bool MsgS2CAddMovieToFavouriteACK::has_error() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void MsgS2CAddMovieToFavouriteACK::set_has_error() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void MsgS2CAddMovieToFavouriteACK::clear_has_error() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void MsgS2CAddMovieToFavouriteACK::clear_error() {
+  error_ = 0;
+  clear_has_error();
+}
+inline ::message::MsgError MsgS2CAddMovieToFavouriteACK::error() const {
+  // @@protoc_insertion_point(field_get:message.MsgS2CAddMovieToFavouriteACK.error)
+  return static_cast< ::message::MsgError >(error_);
+}
+inline void MsgS2CAddMovieToFavouriteACK::set_error(::message::MsgError value) {
+  assert(::message::MsgError_IsValid(value));
+  set_has_error();
+  error_ = value;
+  // @@protoc_insertion_point(field_set:message.MsgS2CAddMovieToFavouriteACK.error)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace message
+
+#ifndef SWIG
+namespace google {
+namespace protobuf {
+
+template <> struct is_proto_enum< ::message::MsgError> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::message::MsgError>() {
+  return ::message::MsgError_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
+#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

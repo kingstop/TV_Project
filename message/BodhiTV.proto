@@ -1,6 +1,12 @@
 package message;
 import "common.proto";
-
+enum MsgError
+{
+	MsgError_NO = 0;
+	MsgError_FailedToPlayVideoNotFoundVideo = 1;
+	MsgError_FailedToPlayVideoRequiredVIP = 2;
+	
+}
 
 message MsgC2SReqMovieThemes
 {
@@ -27,17 +33,17 @@ message MsgS2CClientInit
 
 message MsgC2SReqThemeInfo
 {
-	required int32 Theme_id = 1;
+	required int64 Theme_id = 1;
 }
 
-message MsgS2CMovieThemeInfoACK
+message MsgS2CThemeInfoACK
 {
 	required MsgMovieTheme info = 1;
 }
 
 message MsgC2SReqMovieInfo
 {
-	required int32 movie_id = 1;
+	required int64 movie_id = 1;
 }
 
 message MsgS2CMovieInfoACK
@@ -45,3 +51,27 @@ message MsgS2CMovieInfoACK
 	required MsgMovie info = 1;
 }
 
+
+message MsgC2SReqPlayMovie
+{
+	required int64 Movie_id = 1;
+	required int64 Video_id = 2;
+}
+
+message MsgS2CPlayMovieACK
+{
+	required int64 Movie_id = 1;
+	required int64 Video_id = 2;
+	required MsgError error = 3 [default = MsgError_NO];
+}
+
+message MsgC2SReqAddMovieToFavourite
+{
+	required int64 Movie_id = 1;	
+}
+
+message MsgS2CAddMovieToFavouriteACK
+{
+	required int64 Movie_id = 1;	
+	required MsgError error = 2 [default = MsgError_NO];
+}

@@ -6,24 +6,24 @@ public:
 	virtual ~MovieManager();
 public:
 	void Load(DBQuery* p);
-	const std::map<int, message::MsgVideo>* getVideos();
-	const message::MsgVideo* getVideo(int id);
-	const std::map<int, message::MsgMovieExternal>* getMovies();
-	const message::MsgMovieExternal* getMovie(int id);
-	const std::map<int, message::MsgMovieThemeExternal>* getThemes();
-	const message::MsgMovieThemeExternal* getTheme(int id);
-	const std::map<int, std::list<int>>* getMovieVideos();
-	const std::list<int>* getMovieVideos(int id);
-	const std::map<int, std::list<std::pair<int, int>>>* getThemeMovies();
-	const std::list<std::pair<int, int>>* getThemeMovies(int id);
-	const std::map<int, int>* getGridTheme();
+	const std::map<s64, message::MsgVideo>* getVideos();
+	const message::MsgVideo* getVideo(s64 id);
+	const std::map<s64, message::MsgMovieExternal>* getMovies();
+	const message::MsgMovieExternal* getMovie(s64 id);
+	const std::map<s64, message::MsgMovieThemeExternal>* getThemes();
+	const message::MsgMovieThemeExternal* getTheme(s64 id);
+	const std::map<s64, std::list<s64>>* getMovieVideos();
+	const std::list<s64>* getMovieVideos(s64 id);
+	const std::map<s64, std::list<std::pair<s64, s64>>>* getThemeMovies();
+	const std::list<std::pair<s64, s64>>* getThemeMovies(s64 id);
+	const std::map<s64, s64>* getGridTheme();
 protected:
-	std::map<int, message::MsgVideo> _videos;
-	std::map<int, message::MsgMovieExternal> _movies;	
-	std::map<int, message::MsgMovieThemeExternal> _themes;
-	std::map<int, std::list<int>> _movie_videos;
-	std::map<int, std::list<std::pair<int, int>>> _theme_movie_ids;
-	std::map<int, int> _grid_theme;
+	std::map<s64, message::MsgVideo> _videos;
+	std::map<s64, message::MsgMovieExternal> _movies;
+	std::map<s64, message::MsgMovieThemeExternal> _themes;
+	std::map<s64, std::list<s64>> _movie_videos;
+	std::map<s64, std::list<std::pair<s64, s64>>> _theme_movie_ids;
+	std::map<s64, s64> _grid_theme;
 	
 };
 

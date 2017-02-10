@@ -16,14 +16,19 @@ public:
 	void StartSave();
 	void StartDestroyClock();
 	void StopDestroyClock();
+	const message::MsgMovieTheme* GetFavourite();
+	const message::MsgMovieTheme* GetRecentlyPlay();
+	const std::list<s64>* GetFavouriteList();
+	const std::map<s64, message::MsgWatchRecordInfo>* getRecentlyWatch();
 	void Save();
 	u64 GetID();
 protected:
 	void Destroy();
 protected:
-	std::map<int, message::MsgWatchRecordInfo> _watch_records;
+	std::map<s64, message::MsgWatchRecordInfo> _watch_records;
 	message::MsgMovieTheme _collection_theme;
-	std::list<int> _collection_movie;
+	message::MsgMovieTheme _recently_theme;
+	std::list<s64> _collection_movie;
 	int _vip_level;
 	u64 _id;
 	bool _destroy;
