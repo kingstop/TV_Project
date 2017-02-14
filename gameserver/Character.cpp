@@ -6,19 +6,35 @@
 Character::Character()
 {
 	message::MsgMovieThemeExternal entry_theme_external;
-	entry_theme_external.set_id(0);
+	entry_theme_external.set_id(MyFavouriteID);
 	entry_theme_external.set_describe("");
 	entry_theme_external.set_name("");
 	entry_theme_external.set_type(message::MovieType_MyFavourite);
 	_collection_theme.mutable_theme_external()->CopyFrom(entry_theme_external);	
 
 	message::MsgMovieThemeExternal* external = _recently_theme.mutable_theme_external();
-	external->set_id(1);
+	external->set_id(RecentlyPlay);
 	entry_theme_external.set_describe("");
 	entry_theme_external.set_name("");
-	entry_theme_external.set_type(message::MovieType_RecentlyPlay);
-
+	entry_theme_external.set_type(message::MovieType_RecentlyPlay);	
 }
+void Character::AddMovieToFavourite(s64 movie_id, Session* p)
+{
+	message::MsgS2CAddMovieToFavouriteACK msg;
+	msg.set_movie_id(msg.movie_id());
+	msg.set_error(message::MsgError_NO);
+	if (gMovieManager.getMovie(movie_id) == NULL)
+	{
+		msg.set_error(message::MsgError_FailedToAddFavouriteNotFoundMovie);
+	}
+	else
+	{
+		_collection_movie.push_back(movie_id);
+	}
+	p->sendPBMessage(&msg);
+	
+}
+
 
 const message::MsgMovieTheme* Character::GetFavourite()
 {
@@ -34,7 +50,7 @@ const std::list<s64>* Character::GetFavouriteList()
 	return &_collection_movie;
 }
 
-const std::map<s64, message::MsgWatchRecordInfo>* Character::getRecentlyWatch()
+const MAPWATCHRECORDS* Character::getRecentlyWatch()
 {
 	return &_watch_records;
 }
@@ -51,6 +67,7 @@ void Character::Create(u64 id)
 {
 	_id = id;
 	_vip_level = 0;
+	_name = gCharacterManager.generateName();
 }
 void Character::RemoveSession(Session* s)
 {
@@ -148,20 +165,40 @@ void Character::SendClienInit(Session* s)
 		{
 			msg.add_watch_record()->CopyFrom(it->second);
 		}
+		msg.set_name(_name.c_str());
 		
 		s->sendPBMessage(&msg);
 	}
 
 }
 
+void Character::PlayVideo(s64 movie_id, s64 video_id)
+{
+	message::MsgWatchRecordInfo entry;
+	entry.set_movie_id(movie_id);
+	entry.set_video_id(video_id);
+	entry.set_time(g_server_time);
+	entry.set_progress(0);
+	_watch_records[entry.video_id()];
+	gCharacterManager.PlayVideo(movie_id);
+}
 
 
+void Character::StopVideo(s64 movie_id, s64 video_id, int  progress)
+{
+	message::MsgWatchRecordInfo entry;
+	entry.set_movie_id(movie_id);
+	entry.set_video_id(video_id);
+	entry.set_time(g_server_time);
+	entry.set_progress(100);
+	_watch_records[entry.video_id()];
+}
 void Character::Save()
 {
 	char sz_sql[40960];
 	char temp_sql[512];
 	std::string watch_str;
-	std::map<s64, message::MsgWatchRecordInfo>::iterator it = _watch_records.begin();
+	MAPWATCHRECORDS::iterator it = _watch_records.begin();
 	for (int i = 0; it != _watch_records.end(); ++ it, i ++)
 	{
 		if (i != 0)
@@ -172,7 +209,7 @@ void Character::Save()
 		sprintf(temp_sql, "%d,%d,%d,%lu", msg_entry.movie_id(), msg_entry.video_id(), msg_entry.progress(), msg_entry.time());
 		watch_str += temp_sql;
 	}
-	sprintf(sz_sql, "replace into `character`(`character_id`, `rate_of_progress`, `vip`) values(%lu, '%s', %d)", _id, watch_str.c_str(), _vip_level);
+	sprintf(sz_sql, "replace into `character`(`character_id`, `name`, `rate_of_progress`, `vip`) values(%llu, '%s', '%s', %d)", _id, _name.c_str(), watch_str.c_str(), _vip_level);
 	message::MsgSaveDataGS2DB msg;
 	msg.set_sql(sz_sql);
 	gGSDBClient.sendPBMessage(&msg, 0);

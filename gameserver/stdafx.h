@@ -49,7 +49,9 @@ enum EventTypes
 	EVENT_SAVE_CHARACTER_DATA_,
 	EVENT_DESTROY_CHARACTER_,
 	EVENT_PER_TEN_MIN_COLLECT_,
-	EVENT_PER_MIN_COLLECT_
+	EVENT_PER_MIN_COLLECT_,
+	EVENT_SAVE_DAY_PLAY,
+	EVENT_PER_MIN
 };
 struct FuGameFather
 {
@@ -94,6 +96,9 @@ extern FuGameFather* gFuGameFather;
 //#define gShopSalesPromotionManager gFuGameFather->sShopSalesPromotionManager
 #define gRecordManager      gFuGameFather->sRecordManager
 #define gHttpManager		gFuGameFather->sHttpManager
+#define MyFavouriteID 0
+#define RecentlyPlay 1
+#define RankID 2
 //#define gPlatformClient     gFuGameFather->sPlatformClient
 //#define gRankManager		gFuGameFather->sRankManager
 enum

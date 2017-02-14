@@ -4,6 +4,11 @@
 
 MovieManager::MovieManager()
 {
+	message::MsgMovieThemeExternal* external = _rank_theme.mutable_theme_external();
+	external->set_id(RankID);
+	external->set_describe("");
+	external->set_name("");
+	external->set_type(message::MovieType_Rank);
 }
 
 
@@ -154,6 +159,11 @@ const message::MsgMovieExternal* MovieManager::getMovie(s64 id)
 	}
 	return entry;
 }
+
+const message::MsgMovieTheme* MovieManager::getRankMovieTheme()
+{
+	return &_rank_theme;
+}
 const std::map<s64, message::MsgMovieThemeExternal>* MovieManager::getThemes()
 {
 	return &_themes;
@@ -201,4 +211,59 @@ const std::list<std::pair<s64, s64>>* MovieManager::getThemeMovies(s64 id)
 const std::map<s64, s64>* MovieManager::getGridTheme()
 {
 	return &_grid_theme;
+}
+
+void MovieManager::SetServerOpenTime(u64 time)
+{
+	_server_open_time = time;
+
+	
+}
+void MovieManager::SetServerDayUpdateTime(u64 time)
+{
+	_server_day_update_time = time;
+	time_t temp_time = _server_open_time;
+	struct tm *ptr;
+	ptr = localtime(&temp_time);
+	ptr->tm_hour = _server_day_update_time;
+	ptr->tm_min = 1;
+	ptr->tm_sec = 1;
+	time_t temp_time_1 = mktime(ptr);
+	if (temp_time_1 > temp_time)
+	{
+		_server_first_update_time = temp_time_1;
+	}
+	else
+	{
+		_server_first_update_time = temp_time_1 + (24 * 60 * 60);
+	}
+}
+u64 MovieManager::GetServerOpenTime()
+{
+	return _server_open_time;
+}
+u64 MovieManager::GetServerDayUpdateTime()
+{
+	return _server_day_update_time;
+}
+
+void MovieManager::SetServerID(char id)
+{
+	_server_id = id;
+}
+char MovieManager::GetServerID()
+{
+	return _server_id;
+}
+
+
+
+u64 MovieManager::GetDayPassed(u64 time)
+{
+	u64 day_passed = 0;
+	if (time > _server_first_update_time)
+	{
+		day_passed = ((time - _server_first_update_time) / (24 * 60 * 60)) + 1;
+	}
+	return day_passed;
 }

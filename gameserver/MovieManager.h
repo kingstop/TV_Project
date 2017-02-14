@@ -6,6 +6,15 @@ public:
 	virtual ~MovieManager();
 public:
 	void Load(DBQuery* p);
+	void SetServerOpenTime(u64 time);
+	void SetServerDayUpdateTime(u64 time);
+	u64 GetServerOpenTime();
+	u64 GetServerDayUpdateTime();
+	u64 GetDayPassed(u64 time);
+	void SetServerID(char id);
+	char GetServerID();
+	const message::MsgMovieTheme* getRankMovieTheme();
+public:
 	const std::map<s64, message::MsgVideo>* getVideos();
 	const message::MsgVideo* getVideo(s64 id);
 	const std::map<s64, message::MsgMovieExternal>* getMovies();
@@ -24,6 +33,11 @@ protected:
 	std::map<s64, std::list<s64>> _movie_videos;
 	std::map<s64, std::list<std::pair<s64, s64>>> _theme_movie_ids;
 	std::map<s64, s64> _grid_theme;
+	u64 _server_open_time;
+	u64 _server_day_update_time;
+	u64 _server_first_update_time;
+	char _server_id;
+	message::MsgMovieTheme _rank_theme;
 	
 };
 

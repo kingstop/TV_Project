@@ -5,6 +5,7 @@ enum MsgError
 	MsgError_NO = 0;
 	MsgError_FailedToPlayVideoNotFoundVideo = 1;
 	MsgError_FailedToPlayVideoRequiredVIP = 2;
+	MsgError_FailedToAddFavouriteNotFoundMovie = 3;
 	
 }
 
@@ -29,6 +30,7 @@ message MsgS2CClientInit
 	required string config_pic_path = 4;
 	required string config_video_path = 5;
 	repeated MsgIntPair gird_theme = 6;
+	required string name = 7;
 }
 
 message MsgC2SReqThemeInfo
@@ -52,26 +54,42 @@ message MsgS2CMovieInfoACK
 }
 
 
-message MsgC2SReqPlayMovie
+message MsgC2SReqPlayVideo
 {
-	required int64 Movie_id = 1;
-	required int64 Video_id = 2;
+	required int64 movie_id = 1;
+	required int64 video_id = 2;
 }
 
-message MsgS2CPlayMovieACK
+message MsgC2SPlayVideoACK
 {
-	required int64 Movie_id = 1;
-	required int64 Video_id = 2;
+	required int64 movie_id = 1;
+	required int64 video_id = 2;
 	required MsgError error = 3 [default = MsgError_NO];
 }
 
+message MsgC2SReqStopVideo
+{
+	required int64 movie_id = 1;
+	required int64 video_id = 2;
+	required int32 progress = 3;
+
+}
+
+message MsgC2SStopVideoACK
+{
+	required int64 movie_id = 1;
+	required int64 video_id = 2;
+	required MsgError error = 3 [default = MsgError_NO];
+}
+
+
 message MsgC2SReqAddMovieToFavourite
 {
-	required int64 Movie_id = 1;	
+	required int64 movie_id = 1;	
 }
 
 message MsgS2CAddMovieToFavouriteACK
 {
-	required int64 Movie_id = 1;	
+	required int64 movie_id = 1;	
 	required MsgError error = 2 [default = MsgError_NO];
 }

@@ -292,6 +292,7 @@ bool GameServer::initDataFromCharacterDB(DBQuery* p, const void* data)
 	}
 	character_id += 10;
 	gCharacterManager.SetMaxCharacterID(character_id);
+	gCharacterManager.Load(p);
 	
 	//gDreamHeroManager.Load(p);
 	//gRankManager.Load(p);

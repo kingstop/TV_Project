@@ -31,7 +31,8 @@ void Session::registerPBCall()
 	registerCBFun(PROTOCO_NAME(message::MsgC2SReqMovieThemes), &Session::parseMsgC2SReqMovieThemes);
 	registerCBFun(PROTOCO_NAME(message::MsgC2SReqThemeInfo), &Session::parseMsgC2SReqThemeInfo);
 	registerCBFun(PROTOCO_NAME(message::MsgC2SReqMovieInfo), &Session::parseMsgC2SReqMovieInfo);
-	registerCBFun(PROTOCO_NAME(message::MsgC2SReqPlayMovie), &Session::parseMsgC2SReqPlayMovie);
+	registerCBFun(PROTOCO_NAME(message::MsgC2SReqPlayVideo), &Session::parseMsgC2SReqPlayMovie);
+	registerCBFun(PROTOCO_NAME(message::MsgC2SReqStopVideo), &Session::parseMsgC2SReqStopMovie);
 	registerCBFun(PROTOCO_NAME(message::MsgC2SReqAddMovieToFavourite), &Session::parseMsgC2SReqAddMovieToFavourite);
 	//parseMsgC2SReqAddMovieToFavourite
 	//parseMsgC2SReqPlayMovie
@@ -170,11 +171,33 @@ void Session::sendPBMessage(google::protobuf::Message* p)
 void Session::parseMsgC2SReqAddMovieToFavourite(google::protobuf::Message* p)
 {
 	message::MsgC2SReqAddMovieToFavourite* msg = (message::MsgC2SReqAddMovieToFavourite*)p;
+	_character->AddMovieToFavourite(msg->movie_id(), this);
+}
+
+void Session::parseMsgC2SReqStopMovie(google::protobuf::Message* p)
+{
+	message::MsgC2SReqStopVideo* msg = (message::MsgC2SReqStopVideo*)p;
+	_character->StopVideo(msg->movie_id(), msg->video_id(), msg->progress());
+
+	message::MsgC2SStopVideoACK msgACK;
+	msgACK.set_movie_id(msg->movie_id());
+	msgACK.set_video_id(msg->video_id());
+	msgACK.set_error(message::MsgError_NO);
+	sendPBMessage(&msgACK);
+	
 }
 
 void Session::parseMsgC2SReqPlayMovie(google::protobuf::Message* p)
 {
-	message::MsgC2SReqPlayMovie* msg = (message::MsgC2SReqPlayMovie*)p;
+	message::MsgC2SReqPlayVideo* msg = (message::MsgC2SReqPlayVideo*)p;
+	_character->PlayVideo(msg->movie_id(), msg->video_id());
+
+	message::MsgC2SPlayVideoACK msgACK;
+	msgACK.set_movie_id(msg->movie_id());
+	msgACK.set_video_id(msg->video_id());
+	msgACK.set_error(message::MsgError_NO);
+	sendPBMessage(&msgACK);
+
 }
 
 void Session::parseMsgC2SReqMovieThemes(google::protobuf::Message* p)
@@ -191,6 +214,8 @@ void Session::parseMsgC2SReqMovieThemes(google::protobuf::Message* p)
 	{
 		msgACK.add_infos()->CopyFrom(*_character->GetFavourite());
 		msgACK.add_infos()->CopyFrom(*_character->GetRecentlyPlay());
+		msgACK.add_infos()->CopyFrom((gMovieManager.getRankMovieTheme()->theme_external()));
+
 	}
 	
 	sendPBMessage(&msgACK);
@@ -204,7 +229,7 @@ void Session::parseMsgC2SReqThemeInfo(google::protobuf::Message* p)
 	s64 theme_id = msg->theme_id();
 	message::MsgMovieTheme* info = msgACK.mutable_info();
 	message::MsgMovieThemeExternal* theme_external = NULL;
-	if (theme_id == 0)
+	if (theme_id == MyFavouriteID)
 	{
 		info->mutable_theme_external()->CopyFrom(*_character->GetFavourite());
 		const std::list<s64>*  favourite_list = _character->GetFavouriteList();
@@ -218,7 +243,7 @@ void Session::parseMsgC2SReqThemeInfo(google::protobuf::Message* p)
 			}
 		}
 	}
-	else if(theme_id == 1)
+	else if(theme_id == RecentlyPlay)
 	{
 		info->mutable_theme_external()->CopyFrom(*_character->GetRecentlyPlay());
 		const std::map<s64, message::MsgWatchRecordInfo>*  watchs = _character->getRecentlyWatch();
@@ -237,6 +262,25 @@ void Session::parseMsgC2SReqThemeInfo(google::protobuf::Message* p)
 				entry_pair->set_number_2(watch_info.time());
 			}
 		}
+	}
+	else if (theme_id == RankID)
+	{
+		const std::vector<s64>* map_rank = gCharacterManager.getRankMovies();
+		std::vector<s64>::const_iterator it_rank = map_rank->begin();
+		for (; it_rank != map_rank->end(); ++ it_rank)
+		{
+			s64 movie_id = (*it_rank);
+			const message::MsgMovieExternal*  external = gMovieManager.getMovie(movie_id);
+			if (external != NULL)
+			{
+				info->add_movies_externals()->CopyFrom(*external);
+				//message::MsgIntPair* entry_pair = info->add_movie_ratting();
+				//entry_pair->set_number_1(movie_id);
+				//entry_pair->set_number_2(0);
+			}
+		}
+
+
 	}
 	else
 	{
@@ -318,7 +362,7 @@ void Session::parseMsgCharacterIDDB2GSACK(message::MsgCharacterIDDB2GSACK* msg)
 void Session::Save()
 {
 	char sz_sql[512];
-	sprintf(sz_sql, "replace into `account_character_relationship`(`account`, `channel`, `character_id`, `key_word`) values(%lu, %d, %lu, '%s')",
+	sprintf(sz_sql, "replace into `account_character_relationship`(`account`, `channel`, `character_id`, `key_word`) values(%llu, %d, %llu, '%s')",
 		m_account, _channel ,_default_character_id, _channel_key_word.c_str());
 	message::MsgSaveDataGS2DB msg;
 	msg.set_sql(sz_sql);
