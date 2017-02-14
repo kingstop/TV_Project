@@ -145,6 +145,15 @@ const message::MsgVideo* MovieManager::getVideo(s64 id)
 }
 
 
+int MovieManager::GetServerType()
+{
+	return _server_type;
+}
+void MovieManager::SetServerType(int type)
+{
+	_server_type = type;
+}
+
 const std::map<s64, message::MsgMovieExternal>* MovieManager::getMovies()
 {
 	return &_movies;

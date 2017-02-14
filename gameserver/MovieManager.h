@@ -13,6 +13,8 @@ public:
 	u64 GetDayPassed(u64 time);
 	void SetServerID(char id);
 	char GetServerID();
+	int GetServerType();
+	void SetServerType(int type);
 	const message::MsgMovieTheme* getRankMovieTheme();
 public:
 	const std::map<s64, message::MsgVideo>* getVideos();
@@ -37,6 +39,7 @@ protected:
 	u64 _server_day_update_time;
 	u64 _server_first_update_time;
 	char _server_id;
+	int _server_type;
 	message::MsgMovieTheme _rank_theme;
 	
 };

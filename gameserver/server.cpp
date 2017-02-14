@@ -255,8 +255,10 @@ bool GameServer::initDataFromDatabase(DBQuery* p, const void* data)
 		//gGameConfig.setNeedConnectPlatform((bool)need_connect_platform);
 		//gGameConfig.setPlatformServerIp(platformIp.c_str());
 		//gGameConfig.setPlatformServerPort(platform_port);
-		//int game_id = row["game_id"];
-		//int server_type = row["server_type"];
+		int game_id = row["game_id"];
+		int server_type = row["server_type"];
+		gMovieManager.SetServerID(game_id);
+		gMovieManager.SetServerType(server_type);
 		//gGameConfig.setGameID(game_id);
 		//gGameConfig.setServerType(server_type);
 		//gGameConfig.generateTitle();
