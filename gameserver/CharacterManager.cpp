@@ -297,7 +297,7 @@ void CharacterManager::Destroy(Character* p)
 }
 
 
-bool sort(std::pair<s64, int>& entry_1, std::pair<s64, int>& entry_2)
+bool sort(const std::pair<s64, int>& entry_1, const std::pair<s64, int>& entry_2)
 {
 	if (entry_1.second > entry_2.second)
 	{
