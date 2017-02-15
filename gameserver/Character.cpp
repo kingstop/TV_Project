@@ -206,7 +206,7 @@ void Character::Save()
 			watch_str += ";";
 		}
 		const message::MsgWatchRecordInfo& msg_entry = it->second;
-		sprintf(temp_sql, "%ll,%ll,%d,%llu", msg_entry.movie_id(), msg_entry.video_id(), msg_entry.progress(), msg_entry.time());
+		sprintf(temp_sql, "%l,%l,%d,%lu", msg_entry.movie_id(), msg_entry.video_id(), msg_entry.progress(), msg_entry.time());
 		watch_str += temp_sql;
 	}
 	sprintf(sz_sql, "replace into `character`(`character_id`, `name`, `rate_of_progress`, `vip`) values(%llu, '%s', '%s', %d)", _id, _name.c_str(), watch_str.c_str(), _vip_level);
