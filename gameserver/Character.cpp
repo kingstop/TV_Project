@@ -206,7 +206,7 @@ void Character::Save()
 			watch_str += ";";
 		}
 		const message::MsgWatchRecordInfo& msg_entry = it->second;
-		sprintf(temp_sql, "%d,%d,%d,%lu", msg_entry.movie_id(), msg_entry.video_id(), msg_entry.progress(), msg_entry.time());
+		sprintf(temp_sql, "%ll,%d,%d,%llu", msg_entry.movie_id(), msg_entry.video_id(), msg_entry.progress(), msg_entry.time());
 		watch_str += temp_sql;
 	}
 	sprintf(sz_sql, "replace into `character`(`character_id`, `name`, `rate_of_progress`, `vip`) values(%llu, '%s', '%s', %d)", _id, _name.c_str(), watch_str.c_str(), _vip_level);
@@ -215,7 +215,7 @@ void Character::Save()
 	gGSDBClient.sendPBMessage(&msg, 0);
 
 	std::string sql_collection;
-	sprintf(temp_sql, "delete from `character_movie_collection` where `character_id` =%lu", _id);
+	sprintf(temp_sql, "delete from `character_movie_collection` where `character_id` =%llu", _id);
 	sql_collection += temp_sql;
 	std::list<s64>::iterator it_collection = _collection_movie.begin();
 	for (int i = 0; it_collection != _collection_movie.end(); ++it_collection, i ++)
@@ -229,7 +229,7 @@ void Character::Save()
 			sql_collection += ",";
 		}
 		int id = (*it_collection);
-		sprintf(temp_sql, "(%lu, %d)", _id, id);
+		sprintf(temp_sql, "(%llu, %d)", _id, id);
 		sql_collection += temp_sql;
 	}
 	

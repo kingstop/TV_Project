@@ -125,7 +125,7 @@ DBQuestManager::~DBQuestManager()
 void DBQuestManager::QueryCharacterID(account_type a, tran_id_type t, u16 gs)
 {
 	char sz_sql[1024];
-	sprintf(sz_sql, "select * from `account_character_relationship` where `account`=%lu", a);
+	sprintf(sz_sql, "select * from `account_character_relationship` where `account`=%llu", a);
 	gDBCharDatabase.addSQueryTask(this, &DBQuestManager::dbDoQueryAccCharacterRelationship, sz_sql, 0, new tgAccountCharacterRelationship(a, t, gs), _QUERY_HERO_INFO_);
 }
 
@@ -346,7 +346,7 @@ void DBQuestManager::dbDoQueryCharacterInfo(const SDBResult* r, const void* d, b
 			pkParm->msg.set_vip(vip);
 
 			char sz_sql[512];
-			sprintf(sz_sql, "select * from `character_movie_collection` where `character_id`=%lu", character_id);
+			sprintf(sz_sql, "select * from `character_movie_collection` where `character_id`=%llu", character_id);
 			gDBCharDatabase.addSQueryTask(this, &DBQuestManager::dbDoQueryCharacterCollectionMovie, sz_sql, 0, new tgCharacterInfo(pkParm), _QUERY_HERO_INFO_);
 
 		}
@@ -359,7 +359,7 @@ void DBQuestManager::dbDoQueryCharacterInfo(const SDBResult* r, const void* d, b
 void DBQuestManager::QueryCharacterInfo(u64 id, tran_id_type t, u16 gs)
 {
 	char sz_sql[512];
-	sprintf(sz_sql, "select * from `character` where `character_id`=%lu", id);
+	sprintf(sz_sql, "select * from `character` where `character_id`=%llu", id);
 	gDBCharDatabase.addSQueryTask(this, &DBQuestManager::dbDoQueryCharacterInfo, sz_sql, 0, new tgCharacterInfo(id, t, gs), _QUERY_HERO_INFO_);
 }
 
