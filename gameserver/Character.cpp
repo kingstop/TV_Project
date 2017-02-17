@@ -7,16 +7,16 @@ Character::Character()
 {
 	message::MsgMovieThemeExternal entry_theme_external;
 	entry_theme_external.set_id(MyFavouriteID);
-	entry_theme_external.set_describe("");
-	entry_theme_external.set_name("");
+	entry_theme_external.set_describe("MyFavouriteID");
+	entry_theme_external.set_name("MyFavouriteID");
 	entry_theme_external.set_type(message::MovieType_MyFavourite);
 	_collection_theme.mutable_theme_external()->CopyFrom(entry_theme_external);	
 
 	message::MsgMovieThemeExternal* external = _recently_theme.mutable_theme_external();
 	external->set_id(RecentlyPlayID);
-	entry_theme_external.set_describe("");
-	entry_theme_external.set_name("");
-	entry_theme_external.set_type(message::MovieType_RecentlyPlay);	
+	external->set_describe("RecentlyPlayID");
+	external->set_name("RecentlyPlayID");
+	external->set_type(message::MovieType_RecentlyPlay);
 }
 void Character::AddMovieToFavourite(s64 movie_id, Session* p)
 {
