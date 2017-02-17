@@ -128,9 +128,52 @@ void MovieManager::Load(DBQuery* p)
 			s64 theme_id = row["theme_id"];
 			_grid_theme[grid_id] = theme_id;
 		}
+
+		query.reset();
+		sResult.clear();
+		query << "select * from `movies_info`";
+		sResult = query.store();
+		rows_length = sResult.num_rows();
+		if (rows_length > 0)
+		{
+			DBRow& row = sResult[0];
+			gMovieManager.SetConfigPicPath(row["config_pic_path"].c_str());
+			gMovieManager.SetConfigVideoPath(row["config_video_path"].c_str());
+			gMovieManager.SetConfigResourcePath(row["config_resource_path"].c_str());
+		}
 	}
 }
 
+
+const char * MovieManager::GetConfigPicPath()
+{
+	return _config_pic_path.c_str();
+}
+const char * MovieManager::GetConfigVideoPath()
+{
+	return _config_video_path.c_str();
+}
+const char * MovieManager::GetConfigResourcePath()
+{
+	return _config_resource_path.c_str();
+}
+
+
+void MovieManager::SetConfigPicPath(const char * path)
+{
+	_config_pic_path = path;
+
+
+
+}
+void MovieManager::SetConfigVideoPath(const char * path)
+{
+	_config_video_path = path;
+}
+void MovieManager::SetConfigResourcePath(const char * path)
+{
+	_config_resource_path = path
+}
 
 const std::map<s64, message::MsgVideo>* MovieManager::getVideos()
 {

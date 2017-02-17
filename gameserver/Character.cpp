@@ -148,10 +148,10 @@ void Character::SendClienInit(Session* s)
 	if (s != NULL)
 	{
 		message::MsgS2CClientInit msg;
-		msg.set_config_pic_path("");
-		msg.set_config_video_path("");
+		msg.set_config_pic_path(gMovieManager.GetConfigPicPath());
+		msg.set_config_video_path(gMovieManager.GetConfigVideoPath());
 		msg.set_vip(_vip_level);
-		msg.set_resource_path("");
+		msg.set_resource_path(gMovieManager.GetConfigResourcePath());
 		const std::map<s64, s64>* map = gMovieManager.getGridTheme();
 		std::map<s64, s64>::const_iterator it_grid = map->begin();
 		for (; it_grid != map->end(); ++it_grid)

@@ -16,6 +16,13 @@ public:
 	int GetServerType();
 	void SetServerType(int type);
 	const message::MsgMovieTheme* getRankMovieTheme();
+	void SetConfigPicPath(const char * path);
+	void SetConfigVideoPath(const char * path);
+	void SetConfigResourcePath(const char * path);
+	const char * GetConfigPicPath();
+	const char * GetConfigVideoPath();
+	const char * GetConfigResourcePath();
+
 public:
 	const std::map<s64, message::MsgVideo>* getVideos();
 	const message::MsgVideo* getVideo(s64 id);
@@ -41,6 +48,9 @@ protected:
 	char _server_id;
 	int _server_type;
 	message::MsgMovieTheme _rank_theme;
+	std::string _config_pic_path;
+	std::string _config_video_path;
+	std::string _config_resource_path;
 	
 };
 

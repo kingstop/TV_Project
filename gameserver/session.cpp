@@ -303,8 +303,9 @@ void Session::parseMsgC2SReqThemeInfo(google::protobuf::Message* p)
 		}
 	}
 	sendPBMessage(&msgACK);
-
 }
+
+
 void Session::parseMsgC2SReqMovieInfo(google::protobuf::Message* p)
 {
 	message::MsgC2SReqMovieInfo* msg = (message::MsgC2SReqMovieInfo*)p;
