@@ -212,8 +212,8 @@ void Session::parseMsgC2SReqMovieThemes(google::protobuf::Message* p)
 	}
 	if (_character != NULL)
 	{
-		msgACK.add_infos()->CopyFrom(*_character->GetFavourite());
-		msgACK.add_infos()->CopyFrom(*_character->GetRecentlyPlay());
+		msgACK.add_infos()->CopyFrom((_character->GetFavourite()->theme_external()));
+		msgACK.add_infos()->CopyFrom((_character->GetRecentlyPlay()->theme_external()));
 		msgACK.add_infos()->CopyFrom((gMovieManager.getRankMovieTheme()->theme_external()));
 
 	}

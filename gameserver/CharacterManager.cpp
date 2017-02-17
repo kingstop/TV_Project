@@ -231,7 +231,7 @@ void CharacterManager::Save()
 			}
 			s64 movie_id = it_play->first;
 			int play_count = it_play->second;
-			sprintf(sz_temp, "(%d,%I64u,%d)", passed_day, movie_id, play_count);
+			sprintf(sz_temp, "(%d,%I64d,%d)", passed_day, movie_id, play_count);
 			sql += sz_temp;
 			if (i > 30)
 			{
