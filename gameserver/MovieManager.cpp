@@ -172,7 +172,7 @@ void MovieManager::SetConfigVideoPath(const char * path)
 }
 void MovieManager::SetConfigResourcePath(const char * path)
 {
-	_config_resource_path = path
+	_config_resource_path = path;
 }
 
 const std::map<s64, message::MsgVideo>* MovieManager::getVideos()
