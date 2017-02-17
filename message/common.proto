@@ -65,6 +65,7 @@ enum MovieType
 	MovieType_CartoonRecommendation = 6;
 	MovieType_EarlyEducationRecommendation = 7;
 	MovieType_New = 8;
+	MovieType_Normal = 9;
 	
 }
 

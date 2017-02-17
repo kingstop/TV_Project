@@ -74,11 +74,12 @@ enum MovieType {
   MovieType_Feature = 5,
   MovieType_CartoonRecommendation = 6,
   MovieType_EarlyEducationRecommendation = 7,
-  MovieType_New = 8
+  MovieType_New = 8,
+  MovieType_Normal = 9
 };
 bool MovieType_IsValid(int value);
 const MovieType MovieType_MIN = MovieType_RecentlyPlay;
-const MovieType MovieType_MAX = MovieType_New;
+const MovieType MovieType_MAX = MovieType_Normal;
 const int MovieType_ARRAYSIZE = MovieType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* MovieType_descriptor();

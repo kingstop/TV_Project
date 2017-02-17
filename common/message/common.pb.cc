@@ -278,14 +278,14 @@ void protobuf_AddDesc_common_2eproto() {
     "s_externals\030\002 \003(\0132\031.message.MsgMovieExte"
     "rnal\022*\n\rmovie_ratting\030\003 \003(\0132\023.message.Ms"
     "gIntPair*5\n\tVideoType\022\023\n\017VideoType_Video"
-    "\020\000\022\023\n\017VideoType_Movie\020\001*\207\002\n\tMovieType\022\032\n"
+    "\020\000\022\023\n\017VideoType_Movie\020\001*\235\002\n\tMovieType\022\032\n"
     "\026MovieType_RecentlyPlay\020\000\022\031\n\025MovieType_M"
     "yFavourite\020\001\022\034\n\030MovieType_DerivativeShop"
     "\020\002\022\026\n\022MovieType_Festival\020\003\022\022\n\016MovieType_"
     "Rank\020\004\022\025\n\021MovieType_Feature\020\005\022#\n\037MovieTy"
     "pe_CartoonRecommendation\020\006\022*\n&MovieType_"
     "EarlyEducationRecommendation\020\007\022\021\n\rMovieT"
-    "ype_New\020\010", 1169);
+    "ype_New\020\010\022\024\n\020MovieType_Normal\020\t", 1191);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "common.proto", &protobuf_RegisterTypes);
   MsgIntPair::default_instance_ = new MsgIntPair();
@@ -342,6 +342,7 @@ bool MovieType_IsValid(int value) {
     case 6:
     case 7:
     case 8:
+    case 9:
       return true;
     default:
       return false;
