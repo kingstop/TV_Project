@@ -243,7 +243,7 @@ void Session::parseMsgC2SReqThemeInfo(google::protobuf::Message* p)
 			}
 		}
 	}
-	else if(theme_id == RecentlyPlay)
+	else if(theme_id == RecentlyPlayID)
 	{
 		info->mutable_theme_external()->CopyFrom(*_character->GetRecentlyPlay());
 		const std::map<s64, message::MsgWatchRecordInfo>*  watchs = _character->getRecentlyWatch();

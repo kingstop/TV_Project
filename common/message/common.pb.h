@@ -668,6 +668,30 @@ class MsgMovieExternal : public ::google::protobuf::Message {
   ::std::string* release_name();
   void set_allocated_name(::std::string* name);
 
+  // required string poster_path = 5;
+  bool has_poster_path() const;
+  void clear_poster_path();
+  static const int kPosterPathFieldNumber = 5;
+  const ::std::string& poster_path() const;
+  void set_poster_path(const ::std::string& value);
+  void set_poster_path(const char* value);
+  void set_poster_path(const char* value, size_t size);
+  ::std::string* mutable_poster_path();
+  ::std::string* release_poster_path();
+  void set_allocated_poster_path(::std::string* poster_path);
+
+  // required string path = 6;
+  bool has_path() const;
+  void clear_path();
+  static const int kPathFieldNumber = 6;
+  const ::std::string& path() const;
+  void set_path(const ::std::string& value);
+  void set_path(const char* value);
+  void set_path(const char* value, size_t size);
+  ::std::string* mutable_path();
+  ::std::string* release_path();
+  void set_allocated_path(::std::string* path);
+
   // @@protoc_insertion_point(class_scope:message.MsgMovieExternal)
  private:
   inline void set_has_movie_id();
@@ -678,6 +702,10 @@ class MsgMovieExternal : public ::google::protobuf::Message {
   inline void clear_has_type();
   inline void set_has_name();
   inline void clear_has_name();
+  inline void set_has_poster_path();
+  inline void clear_has_poster_path();
+  inline void set_has_path();
+  inline void clear_has_path();
 
   // helper for ByteSize()
   int RequiredFieldsByteSizeFallback() const;
@@ -688,6 +716,8 @@ class MsgMovieExternal : public ::google::protobuf::Message {
   ::google::protobuf::int64 movie_id_;
   ::google::protobuf::internal::ArenaStringPtr describe_;
   ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::internal::ArenaStringPtr poster_path_;
+  ::google::protobuf::internal::ArenaStringPtr path_;
   int type_;
   friend void  protobuf_AddDesc_common_2eproto();
   friend void protobuf_AssignDesc_common_2eproto();
@@ -1625,6 +1655,112 @@ inline void MsgMovieExternal::set_allocated_name(::std::string* name) {
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:message.MsgMovieExternal.name)
+}
+
+// required string poster_path = 5;
+inline bool MsgMovieExternal::has_poster_path() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void MsgMovieExternal::set_has_poster_path() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void MsgMovieExternal::clear_has_poster_path() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void MsgMovieExternal::clear_poster_path() {
+  poster_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_poster_path();
+}
+inline const ::std::string& MsgMovieExternal::poster_path() const {
+  // @@protoc_insertion_point(field_get:message.MsgMovieExternal.poster_path)
+  return poster_path_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MsgMovieExternal::set_poster_path(const ::std::string& value) {
+  set_has_poster_path();
+  poster_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.MsgMovieExternal.poster_path)
+}
+inline void MsgMovieExternal::set_poster_path(const char* value) {
+  set_has_poster_path();
+  poster_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.MsgMovieExternal.poster_path)
+}
+inline void MsgMovieExternal::set_poster_path(const char* value, size_t size) {
+  set_has_poster_path();
+  poster_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.MsgMovieExternal.poster_path)
+}
+inline ::std::string* MsgMovieExternal::mutable_poster_path() {
+  set_has_poster_path();
+  // @@protoc_insertion_point(field_mutable:message.MsgMovieExternal.poster_path)
+  return poster_path_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MsgMovieExternal::release_poster_path() {
+  clear_has_poster_path();
+  return poster_path_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MsgMovieExternal::set_allocated_poster_path(::std::string* poster_path) {
+  if (poster_path != NULL) {
+    set_has_poster_path();
+  } else {
+    clear_has_poster_path();
+  }
+  poster_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), poster_path);
+  // @@protoc_insertion_point(field_set_allocated:message.MsgMovieExternal.poster_path)
+}
+
+// required string path = 6;
+inline bool MsgMovieExternal::has_path() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void MsgMovieExternal::set_has_path() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void MsgMovieExternal::clear_has_path() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void MsgMovieExternal::clear_path() {
+  path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_path();
+}
+inline const ::std::string& MsgMovieExternal::path() const {
+  // @@protoc_insertion_point(field_get:message.MsgMovieExternal.path)
+  return path_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MsgMovieExternal::set_path(const ::std::string& value) {
+  set_has_path();
+  path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.MsgMovieExternal.path)
+}
+inline void MsgMovieExternal::set_path(const char* value) {
+  set_has_path();
+  path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.MsgMovieExternal.path)
+}
+inline void MsgMovieExternal::set_path(const char* value, size_t size) {
+  set_has_path();
+  path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.MsgMovieExternal.path)
+}
+inline ::std::string* MsgMovieExternal::mutable_path() {
+  set_has_path();
+  // @@protoc_insertion_point(field_mutable:message.MsgMovieExternal.path)
+  return path_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MsgMovieExternal::release_path() {
+  clear_has_path();
+  return path_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MsgMovieExternal::set_allocated_path(::std::string* path) {
+  if (path != NULL) {
+    set_has_path();
+  } else {
+    clear_has_path();
+  }
+  path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), path);
+  // @@protoc_insertion_point(field_set_allocated:message.MsgMovieExternal.path)
 }
 
 // -------------------------------------------------------------------

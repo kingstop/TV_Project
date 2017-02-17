@@ -48,6 +48,8 @@ void MovieManager::Load(DBQuery* p)
 			message::MsgMovieExternal movie_external_entry;
 			movie_external_entry.set_movie_id(row["movie_id"]);
 			movie_external_entry.set_describe(row["describe"].c_str());
+			movie_external_entry.set_poster_path(row["poster_path"].c_str());
+			movie_external_entry.set_path(row["path"].c_str());
 			int movie_type = row["video_type"];
 			movie_external_entry.set_type((message::VideoType)movie_type);
 			movie_external_entry.set_name(row["name"].c_str());
@@ -66,6 +68,7 @@ void MovieManager::Load(DBQuery* p)
 			theme_external.set_id(row["theme_id"]);
 			theme_external.set_name(row["name"].c_str());
 			theme_external.set_describe(row["describe"].c_str());
+		
 			int type = row["type"];
 			theme_external.set_type((message::MovieType)type);
 			_themes[theme_external.id()] = theme_external;

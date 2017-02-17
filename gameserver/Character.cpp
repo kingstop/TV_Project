@@ -13,7 +13,7 @@ Character::Character()
 	_collection_theme.mutable_theme_external()->CopyFrom(entry_theme_external);	
 
 	message::MsgMovieThemeExternal* external = _recently_theme.mutable_theme_external();
-	external->set_id(RecentlyPlay);
+	external->set_id(RecentlyPlayID);
 	entry_theme_external.set_describe("");
 	entry_theme_external.set_name("");
 	entry_theme_external.set_type(message::MovieType_RecentlyPlay);	
@@ -206,7 +206,7 @@ void Character::Save()
 			watch_str += ";";
 		}
 		const message::MsgWatchRecordInfo& msg_entry = it->second;
-		sprintf(temp_sql, "%I64d,%I64d,%I64d,%I64d", msg_entry.movie_id(), msg_entry.video_id(), msg_entry.progress(), msg_entry.time());
+		sprintf(temp_sql, "%I64d,%I64d,%d,%I64d", msg_entry.movie_id(), msg_entry.video_id(), msg_entry.progress(), msg_entry.time());
 		watch_str += temp_sql;
 	}
 	sprintf(sz_sql, "replace into `character`(`character_id`, `name`, `rate_of_progress`, `vip`) values(%llu, '%s', '%s', %d)", _id, _name.c_str(), watch_str.c_str(), _vip_level);

@@ -43,6 +43,8 @@ message MsgMovieExternal
 	required string describe = 2;
 	required VideoType type = 3[default = VideoType_Video];
 	required string name = 4;	
+	required string poster_path = 5;
+	required string path = 6;
 }
 
 message MsgMovie
@@ -72,6 +74,7 @@ message MsgMovieThemeExternal
 	required string describe = 2;	
 	required MovieType type = 3 [default = MovieType_MyFavourite];
 	required int64 id = 4;
+
 }
 
 

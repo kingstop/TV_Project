@@ -97,7 +97,7 @@ extern FuGameFather* gFuGameFather;
 #define gRecordManager      gFuGameFather->sRecordManager
 #define gHttpManager		gFuGameFather->sHttpManager
 #define MyFavouriteID 0
-#define RecentlyPlay 1
+#define RecentlyPlayID 1
 #define RankID 2
 //#define gPlatformClient     gFuGameFather->sPlatformClient
 //#define gRankManager		gFuGameFather->sRankManager

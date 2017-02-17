@@ -126,11 +126,13 @@ void protobuf_AssignDesc_common_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgVideo, _internal_metadata_),
       -1);
   MsgMovieExternal_descriptor_ = file->message_type(4);
-  static const int MsgMovieExternal_offsets_[4] = {
+  static const int MsgMovieExternal_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieExternal, movie_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieExternal, describe_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieExternal, type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieExternal, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieExternal, poster_path_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgMovieExternal, path_),
   };
   MsgMovieExternal_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -261,28 +263,29 @@ void protobuf_AddDesc_common_2eproto() {
     "(\003\022\020\n\010video_id\030\002 \002(\003\022\020\n\010Progress\030\003 \002(\005\022\014"
     "\n\004time\030\004 \002(\003\"X\n\010MsgVideo\022\014\n\004path\030\001 \002(\t\022\020"
     "\n\010describe\030\002 \002(\t\022\014\n\004rank\030\003 \002(\005\022\020\n\010video_"
-    "id\030\004 \002(\003\022\014\n\004name\030\005 \002(\t\"w\n\020MsgMovieExtern"
-    "al\022\020\n\010movie_id\030\001 \002(\003\022\020\n\010describe\030\002 \002(\t\0221"
-    "\n\004type\030\003 \002(\0162\022.message.VideoType:\017VideoT"
-    "ype_Video\022\014\n\004name\030\004 \002(\t\"Z\n\010MsgMovie\022+\n\010e"
-    "xternal\030\001 \002(\0132\031.message.MsgMovieExternal"
-    "\022!\n\006videos\030\002 \003(\0132\021.message.MsgVideo\"|\n\025M"
-    "sgMovieThemeExternal\022\014\n\004name\030\001 \002(\t\022\020\n\010de"
-    "scribe\030\002 \002(\t\0227\n\004type\030\003 \002(\0162\022.message.Mov"
-    "ieType:\025MovieType_MyFavourite\022\n\n\002id\030\004 \002("
-    "\003\"\250\001\n\rMsgMovieTheme\0226\n\016theme_external\030\001 "
-    "\002(\0132\036.message.MsgMovieThemeExternal\0223\n\020m"
-    "ovies_externals\030\002 \003(\0132\031.message.MsgMovie"
-    "External\022*\n\rmovie_ratting\030\003 \003(\0132\023.messag"
-    "e.MsgIntPair*5\n\tVideoType\022\023\n\017VideoType_V"
-    "ideo\020\000\022\023\n\017VideoType_Movie\020\001*\207\002\n\tMovieTyp"
-    "e\022\032\n\026MovieType_RecentlyPlay\020\000\022\031\n\025MovieTy"
-    "pe_MyFavourite\020\001\022\034\n\030MovieType_Derivative"
-    "Shop\020\002\022\026\n\022MovieType_Festival\020\003\022\022\n\016MovieT"
-    "ype_Rank\020\004\022\025\n\021MovieType_Feature\020\005\022#\n\037Mov"
-    "ieType_CartoonRecommendation\020\006\022*\n&MovieT"
-    "ype_EarlyEducationRecommendation\020\007\022\021\n\rMo"
-    "vieType_New\020\010", 1133);
+    "id\030\004 \002(\003\022\014\n\004name\030\005 \002(\t\"\232\001\n\020MsgMovieExter"
+    "nal\022\020\n\010movie_id\030\001 \002(\003\022\020\n\010describe\030\002 \002(\t\022"
+    "1\n\004type\030\003 \002(\0162\022.message.VideoType:\017Video"
+    "Type_Video\022\014\n\004name\030\004 \002(\t\022\023\n\013poster_path\030"
+    "\005 \002(\t\022\014\n\004path\030\006 \002(\t\"Z\n\010MsgMovie\022+\n\010exter"
+    "nal\030\001 \002(\0132\031.message.MsgMovieExternal\022!\n\006"
+    "videos\030\002 \003(\0132\021.message.MsgVideo\"|\n\025MsgMo"
+    "vieThemeExternal\022\014\n\004name\030\001 \002(\t\022\020\n\010descri"
+    "be\030\002 \002(\t\0227\n\004type\030\003 \002(\0162\022.message.MovieTy"
+    "pe:\025MovieType_MyFavourite\022\n\n\002id\030\004 \002(\003\"\250\001"
+    "\n\rMsgMovieTheme\0226\n\016theme_external\030\001 \002(\0132"
+    "\036.message.MsgMovieThemeExternal\0223\n\020movie"
+    "s_externals\030\002 \003(\0132\031.message.MsgMovieExte"
+    "rnal\022*\n\rmovie_ratting\030\003 \003(\0132\023.message.Ms"
+    "gIntPair*5\n\tVideoType\022\023\n\017VideoType_Video"
+    "\020\000\022\023\n\017VideoType_Movie\020\001*\207\002\n\tMovieType\022\032\n"
+    "\026MovieType_RecentlyPlay\020\000\022\031\n\025MovieType_M"
+    "yFavourite\020\001\022\034\n\030MovieType_DerivativeShop"
+    "\020\002\022\026\n\022MovieType_Festival\020\003\022\022\n\016MovieType_"
+    "Rank\020\004\022\025\n\021MovieType_Feature\020\005\022#\n\037MovieTy"
+    "pe_CartoonRecommendation\020\006\022*\n&MovieType_"
+    "EarlyEducationRecommendation\020\007\022\021\n\rMovieT"
+    "ype_New\020\010", 1169);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "common.proto", &protobuf_RegisterTypes);
   MsgIntPair::default_instance_ = new MsgIntPair();
@@ -2239,6 +2242,8 @@ const int MsgMovieExternal::kMovieIdFieldNumber;
 const int MsgMovieExternal::kDescribeFieldNumber;
 const int MsgMovieExternal::kTypeFieldNumber;
 const int MsgMovieExternal::kNameFieldNumber;
+const int MsgMovieExternal::kPosterPathFieldNumber;
+const int MsgMovieExternal::kPathFieldNumber;
 #endif  // !_MSC_VER
 
 MsgMovieExternal::MsgMovieExternal()
@@ -2265,6 +2270,8 @@ void MsgMovieExternal::SharedCtor() {
   describe_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   type_ = 0;
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  poster_path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -2276,6 +2283,8 @@ MsgMovieExternal::~MsgMovieExternal() {
 void MsgMovieExternal::SharedDtor() {
   describe_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  poster_path_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  path_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -2306,7 +2315,7 @@ MsgMovieExternal* MsgMovieExternal::New(::google::protobuf::Arena* arena) const 
 }
 
 void MsgMovieExternal::Clear() {
-  if (_has_bits_[0 / 32] & 15) {
+  if (_has_bits_[0 / 32] & 63) {
     movie_id_ = GOOGLE_LONGLONG(0);
     if (has_describe()) {
       describe_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -2314,6 +2323,12 @@ void MsgMovieExternal::Clear() {
     type_ = 0;
     if (has_name()) {
       name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+    if (has_poster_path()) {
+      poster_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+    if (has_path()) {
+      path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -2396,6 +2411,40 @@ bool MsgMovieExternal::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(42)) goto parse_poster_path;
+        break;
+      }
+
+      // required string poster_path = 5;
+      case 5: {
+        if (tag == 42) {
+         parse_poster_path:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_poster_path()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->poster_path().data(), this->poster_path().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "message.MsgMovieExternal.poster_path");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(50)) goto parse_path;
+        break;
+      }
+
+      // required string path = 6;
+      case 6: {
+        if (tag == 50) {
+         parse_path:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_path()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->path().data(), this->path().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "message.MsgMovieExternal.path");
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -2456,6 +2505,26 @@ void MsgMovieExternal::SerializeWithCachedSizes(
       4, this->name(), output);
   }
 
+  // required string poster_path = 5;
+  if (has_poster_path()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->poster_path().data(), this->poster_path().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message.MsgMovieExternal.poster_path");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      5, this->poster_path(), output);
+  }
+
+  // required string path = 6;
+  if (has_path()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->path().data(), this->path().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message.MsgMovieExternal.path");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      6, this->path(), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -2499,6 +2568,28 @@ void MsgMovieExternal::SerializeWithCachedSizes(
         4, this->name(), target);
   }
 
+  // required string poster_path = 5;
+  if (has_poster_path()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->poster_path().data(), this->poster_path().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message.MsgMovieExternal.poster_path");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->poster_path(), target);
+  }
+
+  // required string path = 6;
+  if (has_path()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->path().data(), this->path().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "message.MsgMovieExternal.path");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        6, this->path(), target);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -2537,12 +2628,26 @@ int MsgMovieExternal::RequiredFieldsByteSizeFallback() const {
         this->name());
   }
 
+  if (has_poster_path()) {
+    // required string poster_path = 5;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->poster_path());
+  }
+
+  if (has_path()) {
+    // required string path = 6;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->path());
+  }
+
   return total_size;
 }
 int MsgMovieExternal::ByteSize() const {
   int total_size = 0;
 
-  if (((_has_bits_[0] & 0x0000000f) ^ 0x0000000f) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x0000003f) ^ 0x0000003f) == 0) {  // All required fields are present.
     // required int64 movie_id = 1;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
@@ -2561,6 +2666,16 @@ int MsgMovieExternal::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->name());
+
+    // required string poster_path = 5;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->poster_path());
+
+    // required string path = 6;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->path());
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
@@ -2605,6 +2720,14 @@ void MsgMovieExternal::MergeFrom(const MsgMovieExternal& from) {
       set_has_name();
       name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
     }
+    if (from.has_poster_path()) {
+      set_has_poster_path();
+      poster_path_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.poster_path_);
+    }
+    if (from.has_path()) {
+      set_has_path();
+      path_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.path_);
+    }
   }
   if (from._internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -2624,7 +2747,7 @@ void MsgMovieExternal::CopyFrom(const MsgMovieExternal& from) {
 }
 
 bool MsgMovieExternal::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
+  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
 
   return true;
 }
@@ -2638,6 +2761,8 @@ void MsgMovieExternal::InternalSwap(MsgMovieExternal* other) {
   describe_.Swap(&other->describe_);
   std::swap(type_, other->type_);
   name_.Swap(&other->name_);
+  poster_path_.Swap(&other->poster_path_);
+  path_.Swap(&other->path_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -2807,6 +2932,112 @@ void MsgMovieExternal::InternalSwap(MsgMovieExternal* other) {
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:message.MsgMovieExternal.name)
+}
+
+// required string poster_path = 5;
+ bool MsgMovieExternal::has_poster_path() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+ void MsgMovieExternal::set_has_poster_path() {
+  _has_bits_[0] |= 0x00000010u;
+}
+ void MsgMovieExternal::clear_has_poster_path() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+ void MsgMovieExternal::clear_poster_path() {
+  poster_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_poster_path();
+}
+ const ::std::string& MsgMovieExternal::poster_path() const {
+  // @@protoc_insertion_point(field_get:message.MsgMovieExternal.poster_path)
+  return poster_path_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgMovieExternal::set_poster_path(const ::std::string& value) {
+  set_has_poster_path();
+  poster_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.MsgMovieExternal.poster_path)
+}
+ void MsgMovieExternal::set_poster_path(const char* value) {
+  set_has_poster_path();
+  poster_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.MsgMovieExternal.poster_path)
+}
+ void MsgMovieExternal::set_poster_path(const char* value, size_t size) {
+  set_has_poster_path();
+  poster_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.MsgMovieExternal.poster_path)
+}
+ ::std::string* MsgMovieExternal::mutable_poster_path() {
+  set_has_poster_path();
+  // @@protoc_insertion_point(field_mutable:message.MsgMovieExternal.poster_path)
+  return poster_path_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* MsgMovieExternal::release_poster_path() {
+  clear_has_poster_path();
+  return poster_path_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgMovieExternal::set_allocated_poster_path(::std::string* poster_path) {
+  if (poster_path != NULL) {
+    set_has_poster_path();
+  } else {
+    clear_has_poster_path();
+  }
+  poster_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), poster_path);
+  // @@protoc_insertion_point(field_set_allocated:message.MsgMovieExternal.poster_path)
+}
+
+// required string path = 6;
+ bool MsgMovieExternal::has_path() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+ void MsgMovieExternal::set_has_path() {
+  _has_bits_[0] |= 0x00000020u;
+}
+ void MsgMovieExternal::clear_has_path() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+ void MsgMovieExternal::clear_path() {
+  path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_path();
+}
+ const ::std::string& MsgMovieExternal::path() const {
+  // @@protoc_insertion_point(field_get:message.MsgMovieExternal.path)
+  return path_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgMovieExternal::set_path(const ::std::string& value) {
+  set_has_path();
+  path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:message.MsgMovieExternal.path)
+}
+ void MsgMovieExternal::set_path(const char* value) {
+  set_has_path();
+  path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:message.MsgMovieExternal.path)
+}
+ void MsgMovieExternal::set_path(const char* value, size_t size) {
+  set_has_path();
+  path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:message.MsgMovieExternal.path)
+}
+ ::std::string* MsgMovieExternal::mutable_path() {
+  set_has_path();
+  // @@protoc_insertion_point(field_mutable:message.MsgMovieExternal.path)
+  return path_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* MsgMovieExternal::release_path() {
+  clear_has_path();
+  return path_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgMovieExternal::set_allocated_path(::std::string* path) {
+  if (path != NULL) {
+    set_has_path();
+  } else {
+    clear_has_path();
+  }
+  path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), path);
+  // @@protoc_insertion_point(field_set_allocated:message.MsgMovieExternal.path)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
