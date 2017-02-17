@@ -131,7 +131,7 @@ void MovieManager::Load(DBQuery* p)
 
 		query.reset();
 		sResult.clear();
-		query << "select * from `movies_info`";
+		query << "select * from `global_config`";
 		sResult = query.store();
 		rows_length = sResult.num_rows();
 		if (rows_length > 0)
