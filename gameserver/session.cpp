@@ -231,7 +231,7 @@ void Session::parseMsgC2SReqThemeInfo(google::protobuf::Message* p)
 	message::MsgMovieThemeExternal* theme_external = NULL;
 	if (theme_id == MyFavouriteID)
 	{
-		info->mutable_theme_external()->CopyFrom(*_character->GetFavourite());
+		info->mutable_theme_external()->CopyFrom(_character->GetFavourite()->theme_external());
 		const std::list<s64>*  favourite_list = _character->GetFavouriteList();
 		std::list<s64>::const_iterator it = favourite_list->begin();
 		for (; it != favourite_list->end(); ++ it)
